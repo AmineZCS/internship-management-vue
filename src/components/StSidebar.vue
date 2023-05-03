@@ -13,7 +13,7 @@
           density="compact"
           nav
         >
-        <v-list-item prepend-icon="mdi-view-dashboard" title="Home" value="home"></v-list-item>
+          <v-list-item prepend-icon="mdi-view-dashboard" title="Home" value="home"></v-list-item>
           
           <v-list-item prepend-icon="mdi-account" title="Profile" value="Profile"></v-list-item>
           <v-list-item prepend-icon="mdi-logout" title="Logout" value="Logout"></v-list-item>
