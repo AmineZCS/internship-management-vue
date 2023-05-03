@@ -9,11 +9,14 @@
                 <form>
                     <div class="form__group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" v-model="email" />
+                        <input type="email" id="email" v-model="email" @input="errMsg = ''" />
                     </div>
                     <div class="form__group">
                         <label for="password">Password</label>
-                        <input type="password" id="password" v-model="password" />
+                        <input type="password" id="password" v-model="password" @input="errMsg = ''"  />
+                    </div>
+                    <div class="form__group">
+                        <p style="color: red">{{errMsg}}</p>
                     </div>
                     <div class="form__group">
                         <button type="submit" @click.prevent="login">Login</button>
@@ -23,9 +26,8 @@
         </div>
     </div>
 </template>
-<!-- add all the logic for the login component -->
 <script>
-import api from '../api.js'
+import api from '../api'
 
 export default {
     name: 'LoginComp',
@@ -33,7 +35,7 @@ export default {
         return {
             email: '',
             password: '',
-            errMsg:'',
+            errMsg: '',
             data: null,
             token: '',
         }
@@ -42,35 +44,33 @@ export default {
         closeComp() {
             this.$router.push('/');
         },
-        async login(){
-           console.log(this.email)
-           console.log(this.password)
-           try {
-   const response = await api.post('/login',{
-               email: this.email,
-               password: this.password
+        async login() {
+            console.log(this.email)
+            console.log(this.password)
+            try {
+                const response = await api.post('/login', {
+                    email: this.email,
+                    password: this.password
 
-           })
-          this.loggedIn = true
-          this.token = response.data.token
-          console.log(this.token)
-          localStorage.setItem('token',this.token)
-          this.$router.push('/Student')
-          
+                })
+                this.loggedIn = true
+                this.token = response.data.token
+                console.log(this.token)
+                console.log(response.data)
+                localStorage.setItem('token', this.token)
+                this.$router.push('/Student')
+                return response.data;
 
-   return response.data;
-       
- } catch (error) {
-   console.log(error.response.data.message);
-   this.errMsg = error.response.data.message 
- 
- }
+            } catch (error) {
+                console.log(error.response.data.message);
+                this.errMsg = error.response.data.message
+
+            }
+        }
+
     }
-    
-}
 }
 </script>
-<!-- style the professional login component (it will be displayed on top of everything) -->
 <style scoped>
 .login {
     position: fixed;
@@ -143,5 +143,8 @@ export default {
 .form__group button:hover {
     transform: translateY(-3px);
     box-shadow: 0
+}
+p {
+    color: red;
 }
 </style>
