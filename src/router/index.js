@@ -7,6 +7,7 @@ import SpDashboard from "../components/supervisor/SpDashboard.vue";
 import AdDashboard from "../components/admin/AdDashboard.vue";
 import StSettings from "../components/student/StSettings.vue";
 
+import NotFound from "../components/NotFound.vue";
 const routes = [
   {
     path: "/",
@@ -51,6 +52,10 @@ const routes = [
     component: AdDashboard,
     // meta: { requiresAuth: true },
     beforeEnter: (to, from, next) => checkRole(to, from, next, "admin"),
+  },
+  {
+    path: "/:catchAll(.*)",
+    component: NotFound,
   },
 ];
 
