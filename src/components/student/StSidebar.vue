@@ -3,9 +3,8 @@
     <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
     <v-toolbar-title>My App</v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-btn icon>
-      <v-icon>mdi-bell</v-icon>
-    </v-btn>
+    <!-- Notifications component -->
+    <StNotificationsComp/>
   </v-app-bar>
   <v-navigation-drawer v-model="drawer" app
       >
@@ -22,6 +21,7 @@
 </template>
 
 <script>
+import StNotificationsComp from './StNotificationsComp.vue';
 export default {
   data() {
     return {
@@ -33,6 +33,9 @@ export default {
         { title: 'Logout', icon: 'mdi-logout' },
       ],
     };
+  },
+  components: {
+    StNotificationsComp,
   },
 };
 </script>
