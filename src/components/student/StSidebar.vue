@@ -4,7 +4,7 @@
     <v-toolbar-title>My App</v-toolbar-title>
     <v-spacer></v-spacer>
     <!-- Notifications component -->
-    <StNotificationsComp/>
+    <notificationsComp/>
   </v-app-bar>
   <v-navigation-drawer v-model="drawer" app
       >
@@ -22,7 +22,7 @@
 
 <script>
 import { mapActions } from 'vuex'
-import StNotificationsComp from './StNotificationsComp.vue';
+import notificationsComp from '../notificationsComp.vue';
 export default {
   data() {
     return {
@@ -30,7 +30,7 @@ export default {
     };
   },
   components: {
-    StNotificationsComp,
+    notificationsComp,
   },
   methods: {
     ...mapActions('user', ['logout']),

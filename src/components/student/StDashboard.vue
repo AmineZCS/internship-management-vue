@@ -20,6 +20,7 @@
   </v-app>
 </template>
 <script>
+import { mapActions } from 'vuex'
 import StSidebar from './StSidebar.vue';
 import StInternshipCard from './StInternshipCard.vue';
 export default {
@@ -32,9 +33,9 @@ export default {
   methods: {
     apply() {
       // handle apply button click
-    }
-    
-}
+    },
+    ...mapActions('user', ['checkAuthentication']),
+  },
 }
 </script>
 <style >
