@@ -25,7 +25,8 @@ export default {
     name: 'NotFound',
 }
 </script>
-<style>
+<style  scoped>
+
 body {
     padding-top: 20px;
     background-color: #2c3e50;
