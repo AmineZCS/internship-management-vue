@@ -1,11 +1,11 @@
 <template>
-    <v-menu transition="slide-y-transition">
+    <v-menu transition="slide-y-transition" @click="getNotifications">
         <template v-slot:activator="{ props }">
-            <v-btn v-bind="props" class="text-none" stacked>
-                <v-badge v-if="notifications.length > 0" :content="notifications.length" color="error">
+            <v-btn v-bind="props" class="text-none" stacked @click="readNotifications">
+                <v-badge v-if="countUnreadNotifications > 0" :content="countUnreadNotifications" color="error">
                     <v-icon>mdi-bell-outline</v-icon>
                 </v-badge>
-                <v-badge dot v-if="notifications.length == 0">
+                <v-badge dot v-if="countUnreadNotifications == 0">
                     <v-icon>mdi-bell-outline</v-icon>
                 </v-badge>
 
@@ -20,21 +20,22 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
-    name: 'StNotificationsComp',
-    // get notifications from vuex store
-    computed: {
-        notifications() {
-            console.log(this.$store.state.notifications);
-            // get notifications from notifications module
-            return this.$store.state.notifications.notifications;
-        },
+  name: 'StNotificationsComp',
 
-    },
-    // fire the getNotifications action from notifications module
-    created() {
-        this.$store.dispatch('notifications/getNotifications');
-    },
-};
+  // map getters and actions from the notifications module
+  computed: {
+    ...mapGetters('notifications', ['notifications','countUnreadNotifications']),
+  },
+  methods: {
+    ...mapActions('notifications', ['getNotifications','readNotifications']),
+  },
 
+  mounted() {
+    // call the getNotifications action from the notifications module
+    this.getNotifications()
+  },
+}
 </script>
