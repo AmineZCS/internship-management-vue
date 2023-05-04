@@ -64,33 +64,6 @@ const router = createRouter({
   routes,
 });
 
-// Add navigation guard to check if the user is authenticated
-router.beforeEach(async (to, from, next) => {
-  let isAuthenticated = false;
-  // check if the user is authenticated
-
-  try {
-    const response = await api.get("/user");
-    console.log(response.data);
-    isAuthenticated = true;
-  } catch (error) {
-    console.log(error.response.data);
-    if (error.response.data.message === "Unauthenticated.") {
-      isAuthenticated = false;
-      console.log("user is not authenticated");
-    }
-  }
-
-  // Replace with your authentication check
-  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
-
-  if (requiresAuth && !isAuthenticated) {
-    next("/login");
-  } else {
-    next();
-  }
-});
-
 async function checkRole(to, from, next, role) {
   let user = null;
   try {
@@ -109,5 +82,32 @@ async function checkRole(to, from, next, role) {
     next();
   }
 }
+
+// Add navigation guard to check if the user is authenticated
+// router.beforeEach(async (to, from, next) => {
+//   let isAuthenticated = false;
+//   // check if the user is authenticated
+
+//   try {
+//     const response = await api.get("/user");
+//     console.log(response.data);
+//     isAuthenticated = true;
+//   } catch (error) {
+//     console.log(error.response.data);
+//     if (error.response.data.message === "Unauthenticated.") {
+//       isAuthenticated = false;
+//       console.log("user is not authenticated");
+//     }
+//   }
+
+//   // Replace with your authentication check
+//   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
+
+//   if (requiresAuth && !isAuthenticated) {
+//     next("/login");
+//   } else {
+//     next();
+//   }
+// });
 
 export default router;

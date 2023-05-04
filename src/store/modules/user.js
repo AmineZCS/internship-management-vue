@@ -1,5 +1,5 @@
 import api from "../../api";
-// import router from "../../router";
+import router from "../../router";
 const user = {
   namespaced: true, // this is important when using modules
   state: {
@@ -30,20 +30,21 @@ const user = {
     },
 
     // check if the user is authenticated
-    // async checkAuthentication({ commit }) {
-    //   try {
-    //     const response = await api.get("/user");
-    //     console.log(response.data);
-    //     commit("setUser", response.data);
-    //   } catch (error) {
-    //     console.log(error.response.data);
-    //     if (error.response.data.message === "Unauthenticated.") {
-    //       console.log("user is not authenticated");
-    //       // redirect to login page
-    //       router.push({ name: "login" });
-    //     }
-    //   }
-    // },
+    async checkAuthentication({ commit }) {
+      try {
+        const response = await api.get("/user");
+        console.log(response.data);
+        if (response.data.role) {
+          router.push({ path: response.data.role });
+          commit("setUser", response.data);
+        }
+      } catch (error) {
+        console.log(error.response.data);
+        if (error.response.data.message === "Unauthenticated.") {
+          console.log("user is not authenticated");
+        }
+      }
+    },
   },
 };
 export default user;

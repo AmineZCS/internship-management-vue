@@ -28,7 +28,7 @@
 </template>
 <script>
 import api from '../api'
-
+import { mapActions } from 'vuex'
 export default {
     name: 'LoginComp',
     data() {
@@ -72,9 +72,14 @@ export default {
                 this.errMsg = error.response.data.message
 
             }
-        }
+        },
+        ...mapActions('user', ['checkAuthentication'])
 
+    },
+    async created() {
+        await this.checkAuthentication()
     }
+
 }
 </script>
 <style scoped>
