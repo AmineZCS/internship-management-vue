@@ -1,8 +1,9 @@
 import api from '../../api'
 const notifications = {
   namespaced: true, // this is important when using modules
-  state: {
-    notifications: [{message:'Application Declined',read:false},{message:'Application Declined',read:false},{message:'Application Declined',read:false},{message:'Application Declined',read:false},{message:'Application Declined',read:false}]
+    state: {
+    
+    notifications: [{message:'Welcome !!',read:false}]
     },
   
   
@@ -30,14 +31,18 @@ const notifications = {
       try {
    const response = await api.get('/notifications')
    console.log(response.data)
-        commit('setNotifications', response.data)
+    //  check if the response data is an empty array
+          if (response.data.length > 0) {
+            commit('setNotifications', response.data)
+          }
       } catch (error) {
         console.log(error.response.data)
  }
     },
-    async readNotifications({ commit }) {
+      async readNotifications({ commit }) {
+        commit('readNotifications')
       await api.post('/notifications/markAllAsRead')
-      commit('readNotifications')
+      
     }
   }
 }
