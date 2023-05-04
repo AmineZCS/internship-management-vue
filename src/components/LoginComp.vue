@@ -58,7 +58,13 @@ export default {
                 console.log(this.token)
                 console.log(response.data)
                 localStorage.setItem('token', this.token)
-                this.$router.push('/Student')
+                if (response.data.role == 'student') {
+                    this.$router.push('/Student')
+                } else if (response.data.role == 'admin') {
+                    this.$router.push('/Admin')
+                } else if (response.data.role == 'supervisor') {
+                    this.$router.push('/Supervisor')
+                }
                 return response.data;
 
             } catch (error) {
