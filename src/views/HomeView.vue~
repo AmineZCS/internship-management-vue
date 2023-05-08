@@ -9,7 +9,10 @@
     </v-content>
    
      
-      <router-view>
+      <router-view v-slot="LoginComp">
+      <transition name="route" mode="out-in">
+        <component is="LoginComp"></component>
+    </transition>
       </router-view>
     
     
@@ -21,12 +24,13 @@
 import NavBar from '../components/NavBar.vue';
 import Welcome from '../components/Welcome.vue';
 import AboutUs from '../components/AboutUs.vue';
+import LoginComp from '../components/LoginComp.vue';
 import test from '../components/test.vue';
 import contactUs from '../components/contactUs.vue';
 
 export default {
   name: 'HomeVue',
-  components: { NavBar , Welcome , AboutUs  , test, contactUs},
+  components: { NavBar, LoginComp , Welcome , AboutUs  , test, contactUs},
   data: () => ({
     //
   }),

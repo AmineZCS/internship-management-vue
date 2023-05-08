@@ -4,25 +4,27 @@
     <StSidebar/>
     
     <v-content>
-      <h1>{{ user.token }}</h1>
-      <StInternships/>
+      <StInternshipCard
+      title="Software Engineering Intern"
+  startDate="May 2023"
+  endDate="August 2023"
+  description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget nunc nibh."
+  status="Open"/>
       <router-view/>
     </v-content>
   </v-app>
 </template>
 <script>
-import { mapActions,mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 import StSidebar from './StSidebar.vue';
-import StInternships from './StInternships.vue';
+import StInternshipCard from './StInternshipCard.vue'
+
 export default {
   name: 'StDashboard',
   components: {
     StSidebar,
-    StInternships,
+    StInternshipCard,
  
-  },
-  computed: {
-    ...mapGetters('user',['user'])
   },
   methods: {
     apply() {
@@ -30,9 +32,6 @@ export default {
     },
     ...mapActions('user', ['checkAuthentication']),
   },
-  mounted() {
-    console.log(this.user.token)
-  }
 }
 </script>
 <style >

@@ -19,8 +19,8 @@ const routes = [
         name: "login",
         component: LoginComp,
         meta: {
-          transitionName: "route",
-        },
+      transitionName: 'route'
+    }
       },
       {
         path: "contact-us",
@@ -67,9 +67,6 @@ const router = createRouter({
   routes,
 });
 
-// check for the role of the loggged in user:
-//    - proceed if the role matches the visited page
-//    - redirect to login if it doesn't match or user is not loggedin
 async function checkRole(to, from, next, role) {
   let user = null;
   try {

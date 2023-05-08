@@ -9,15 +9,21 @@
         variant="flat"
       >
         <v-card-item>
-        
           <v-card-title class="text-body-2 d-flex align-center">
-           
+           <v-chip
+              class="ms-2 text-medium-emphasis"
+              color="green-darken-3"
+              size="small"
+              text="Open"
+              variant="flat"
+            ></v-chip>
+            <br>
           <div class="text-h6">Backend Dev</div>
             
             <v-spacer></v-spacer>
 
             <v-avatar
-              src="https://cdn.vuetifyjs.com/images/john-smirk.png"
+              src="/home/zeus/PFE-VUE/src/assets/cisco.png"
               size="x-large"
             ></v-avatar>
           </v-card-title>
