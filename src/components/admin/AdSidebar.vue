@@ -1,10 +1,19 @@
 <template>
-  <v-app-bar app>
+  <v-app-bar app
+>
     <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
     <v-toolbar-title>My App</v-toolbar-title>
     <v-spacer></v-spacer>
     <!-- Notifications component -->
     <notificationsComp/>
+    <v-chip link>
+              <v-badge dot bottom color="green" offset-y="10" offset-x="10">
+                <v-avatar size="40">
+                  <v-img src="https://randomuser.me/api/portraits/women/81.jpg" />
+                </v-avatar>
+              </v-badge>
+              <span class="ml-3">Jane Smith</span>
+            </v-chip>
   </v-app-bar>
   <v-navigation-drawer v-model="drawer" app
       >

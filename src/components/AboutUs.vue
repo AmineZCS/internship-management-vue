@@ -2,9 +2,14 @@
    <div class="aboutUs">
     <v-container class="pt-15">
         <v-row>
-            <v-col md="6">
-                <img width="100%"  src="./../assets/img4.jpg" alt="">
+            
+            <v-col md="6" >
+                <img  width="100%"
+                 height="80%"
+                 style="width: 600px; height: 400px;" src="../assets/img2.jpg" />
             </v-col>
+            
+           
             <v-col md="6">
                 <v-subheader class="text-h4">About Us</v-subheader>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus doloribus, labore cumque molestiae fugiat velit c
@@ -44,6 +49,7 @@
     
       data(){
         return{
+            link: 'https://www.freepik.com/free-vector/recruitment-concept-with-laptop_9405402.htm#query=internship%20application&position=31&from_view=search&track=ais'
           
         }
       }

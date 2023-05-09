@@ -10,8 +10,10 @@
                  <v-btn color="success" class="white--text mr-10" rounded>Get Started</v-btn>
 
             </v-col>
-            <v-col md="6">
-                <img width = "100%" height="80%" src="./../assets/img3.jpg"> 
+            <v-col md="6" >
+                <img  width="100%"
+                 height="80%"
+                 style="width: 600px; height: 400px;" src="../assets/img1.jpg" />
             </v-col>
         </v-row>
     </v-container>
