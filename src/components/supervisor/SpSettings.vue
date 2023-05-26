@@ -3,8 +3,8 @@ import { mapActions, mapGetters } from 'vuex';
 import backendUrl from "../../backendConfig.js";
 import api from "../../api"
 export default {
-    name: 'StSettings',
   data() {
+    name: "SpSettings";
     return {
       backendUrl,
       currentPassword:'',
@@ -73,10 +73,10 @@ methods:{
 
             <div class="text-center mt-5">
               <h3 class="text-h6 font-weight-bold">
-               
+                
                 {{user.user_info.fname}} {{user.user_info.lname}}
                 <v-chip size="small" class="font-weight-bold" color="blue">
-                  Student
+                  Supervisor
                 </v-chip>
               </h3>
               <p class="text-body-2">{{ user.user_info.bio  }}</p>

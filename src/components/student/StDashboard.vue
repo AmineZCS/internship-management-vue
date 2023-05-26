@@ -2,39 +2,53 @@
   <v-app >
     
     <StSidebar/>
-    
-    <v-content>
-      <h1>{{ user.token }}</h1>
-      <StInternships/>
+    <StMainAppbar/>
+    <v-main
+    class="main-container"
+    v-touch="{
+      left: () => (left()),
+      right: () => (right()),
+    }"
+  >
+    <!-- <GlobalLoading /> -->
+    <ToolBox />
+    <div class="flex-fill">
       <router-view/>
-    </v-content>
+    </div>
+  </v-main>
   </v-app>
 </template>
 <script>
-import { mapActions,mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 import StSidebar from './StSidebar.vue';
-import StInternships from './StInternships.vue';
+import StMainAppbar from './StMainAppbar.vue';
 export default {
   name: 'StDashboard',
   components: {
     StSidebar,
-    StInternships,
- 
-  },
-  computed: {
-    ...mapGetters('user',['user'])
+    StMainAppbar
   },
   methods: {
     apply() {
       // handle apply button click
     },
+    left(){
+      this.$store.commit('theme/CLOSE_SIDEBAR');
+    },
+    right(){
+      this.$store.commit('theme/OPEN_SIDEBAR');
+    },
     ...mapActions('user', ['checkAuthentication']),
   },
-  mounted() {
-    console.log(this.user.token)
-  }
 }
 </script>
-<style >
-
+<style scoped>
+.scrollnav {
+  height: calc(100vh - 326px);
+}
+.main-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 </style>

@@ -6,7 +6,11 @@ import StDashboard from "../components/student/StDashboard.vue";
 import SpDashboard from "../components/supervisor/SpDashboard.vue";
 import AdDashboard from "../components/admin/AdDashboard.vue";
 import StSettings from "../components/student/StSettings.vue";
-
+import AdSettings from "../components/admin/AdSettings.vue";
+import SpSettings from "../components/supervisor/SpSettings.vue";
+import StInternships from "../components/student/StInternships.vue";
+import AdSupervisors from "../components/admin/AdSupervisors.vue";
+import AdApplications from "../components/admin/AdApplications.vue";
 import NotFound from "../components/NotFound.vue";
 const routes = [
   {
@@ -32,13 +36,18 @@ const routes = [
     path: "/Student",
     name: "StDashboard",
     component: StDashboard,
-    // meta: { requiresAuth: true },
     beforeEnter: (to, from, next) => checkRole(to, from, next, "student"),
+    redirect: "/Student/Internships",
     children: [
       {
         path: "Settings",
         name: "StSettings",
         component: StSettings,
+      },
+      {
+        path: "Internships",
+        name: "StInternships",
+        component: StInternships,
       },
     ],
   },
@@ -48,6 +57,13 @@ const routes = [
     component: SpDashboard,
     // meta: { requiresAuth: true },
     beforeEnter: (to, from, next) => checkRole(to, from, next, "supervisor"),
+    children: [
+      {
+        path: "Settings",
+        name: "SpSettings",
+        component: SpSettings,
+      },
+    ],
   },
   {
     path: "/Admin",
@@ -55,6 +71,23 @@ const routes = [
     component: AdDashboard,
     // meta: { requiresAuth: true },
     beforeEnter: (to, from, next) => checkRole(to, from, next, "admin"),
+    children: [
+      {
+        path: "Settings",
+        name: "AdSettings",
+        component: AdSettings,
+      },
+      {
+        path: "Supervisors",
+        name: "AdSupervisors",
+        component: AdSupervisors,
+      },
+      {
+        path: "Applications",
+        name: "AdApplications",
+        component: AdApplications,
+      },
+    ],
   },
   {
     path: "/:catchAll(.*)",

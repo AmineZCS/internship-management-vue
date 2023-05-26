@@ -47,13 +47,13 @@ export default {
             this.$router.push('/');
         },
         async login() {
+            this.errMsg = ''
             console.log(this.email)
             console.log(this.password)
             try {
                 const response = await api.post('/login', {
                     email: this.email,
                     password: this.password
-
                 })
                 this.loggedIn = true
                 this.token = response.data.token
@@ -61,18 +61,18 @@ export default {
                 console.log(response.data)
                 localStorage.setItem('token', this.token)
                 this.setUser(response.data)
-                if (response.data.role == 'student') {
+                if (response.data.user_info.role == 'student') {
                     this.$router.push('/Student')
-                } else if (response.data.role == 'admin') {
+                } else if (response.data.user_info.role == 'admin') {
                     this.$router.push('/Admin')
-                } else if (response.data.role == 'supervisor') {
+                } else if (response.data.user_info.role == 'supervisor') {
                     this.$router.push('/Supervisor')
                 }
                 return response.data;
 
             } catch (error) {
-                console.log(error);
-                this.errMsg = error
+                console.log(error.response.data);
+                this.errMsg = error.response.data.message
 
             }
         },

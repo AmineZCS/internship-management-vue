@@ -24,6 +24,8 @@ const user = {
         console.log(response.data);
         localStorage.removeItem("token");
         commit("setUser", null);
+        // redirect to login page
+        router.push("/login")
       } catch (error) {
         console.log(error.response.data);
       }
