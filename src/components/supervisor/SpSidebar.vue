@@ -29,6 +29,19 @@ export default {
       key: "",
       items: [
         {
+          key: "menu.applications",
+          text: "Applications",
+          link: "/Supervisor/Applications",
+          icon: "mdi-file-document-outline",
+        },
+      ],
+    
+    },
+    {
+      text: "",
+      key: "",
+      items: [
+        {
         icon: "mdi-cog-outline",
         key: "menu.settings",
         text: "Settings",

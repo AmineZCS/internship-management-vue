@@ -23,7 +23,6 @@ export default {
     sortable: false,
     value: "user",
   },
-  { text: "Date", value: "date" },
   { text: "Internship", value: "internship" },
   { text: "Admin Status", value: "admin_status" },
   { text: "Supervisor Status", value: "supervisor_status" },
@@ -188,7 +187,6 @@ items:null,
                 </div>
               </div>
             </td>
-            <td>{{ item.created_at }}</td>
             <td @mouseenter="showInternshipCard($event, item)"
            
             >{{ item.internship.position }}</td>

@@ -11,6 +11,8 @@ import SpSettings from "../components/supervisor/SpSettings.vue";
 import StInternships from "../components/student/StInternships.vue";
 import AdSupervisors from "../components/admin/AdSupervisors.vue";
 import AdApplications from "../components/admin/AdApplications.vue";
+import SpApplications from "../components/supervisor/SpApplications.vue";
+import SpFeedback from "../components/supervisor/SpFeedback.vue";
 import NotFound from "../components/NotFound.vue";
 const routes = [
   {
@@ -63,7 +65,12 @@ const routes = [
         name: "SpSettings",
         component: SpSettings,
       },
-    ],
+      {
+        path: "Applications",
+        name: "SpApplications",
+        component: SpApplications,
+      }
+    ]
   },
   {
     path: "/Admin",

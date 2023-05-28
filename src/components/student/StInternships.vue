@@ -66,7 +66,7 @@ export default{
 <template>
   <v-toolbar height="60">
     <v-toolbar-title class="text-h6 font-weight-bold">
-      <span>Card1</span>
+      <span>Internships</span>
     </v-toolbar-title>
   </v-toolbar>
 
@@ -162,7 +162,7 @@ export default{
           <div class="d-flex flex-column pa-6">
             <v-avatar size="90" class="mx-auto elevation-12" color="white">
               <img
-                :src="`${backendUrl}/profilePic/${hoveredItem.id}`"
+                :src="`${backendUrl}/profilePic/${hoveredItem.supervisor_id}`"
                 style="object-fit: cover; object-position: center; width: 100%; height: 100%;"
               />
             </v-avatar>
@@ -239,6 +239,10 @@ export default{
       </v-container>
     </v-sheet>
   </v-sheet>
+  <!-- empty space  -->
+  <v-spacer></v-spacer>
+  <v-spacer></v-spacer>
+  <v-spacer></v-spacer>
 </template>
 
 <style scoped lang="scss">

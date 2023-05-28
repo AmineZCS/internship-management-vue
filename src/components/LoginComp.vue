@@ -100,7 +100,6 @@ export default {
     justify-content: center;
     align-items: center;
     transition: opacity 1s;
-    
 }
 
 .login__container {
