@@ -33,8 +33,20 @@ items:null,
     };}
     ,
     methods:{
-      accept(item){
+      async accept(item){
         console.log(item)
+        try{
+          const response = await api.post('/adminApprove',{
+            application_id: item.application.id
+          })
+          console.log(response)
+          this.getApplications()
+        }catch(e){
+          console.log(e)
+        }
+
+
+
       },
       reject(item){
         console.log(item)
@@ -196,7 +208,7 @@ items:null,
               <v-icon size="small" color="error">mdi-circle-medium</v-icon>
               <span>Rejected</span>
             </div>
-            <div v-if="item.application.admin_status === 'accepted'" class="text-success">
+            <div v-if="item.application.admin_status === 'approved'" class="text-success">
               <v-icon size="small" color="success">mdi-circle-medium</v-icon>
               <span>Accepted</span>
             </div>
@@ -211,7 +223,7 @@ items:null,
               <v-icon size="small" color="error">mdi-circle-medium</v-icon>
               <span>Rejected</span>
             </div>
-            <div v-if="item.application.supervisor_status === 'accepted'" class="text-success">
+            <div v-if="item.application.supervisor_status === 'approved'" class="text-success">
               <v-icon size="small" color="success">mdi-circle-medium</v-icon>
               <span>Accepted</span>
             </div>
