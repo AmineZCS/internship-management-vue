@@ -180,8 +180,8 @@ selectedApplicationId: null,
               <v-icon size="small" color="red">mdi-circle-medium</v-icon>
               <span>Rejected</span>
             </div>
-            <div v-if="item.supervisor_status === 'approved'" class="text-success">
-              <v-icon size="small" color="success">mdi-circle-medium</v-icon>
+            <div v-if="item.supervisor_status === 'approved'" class="text-green">
+              <v-icon size="small" color="green">mdi-circle-medium</v-icon>
               <span>Accepted</span>
             </div>
             <div v-if="item.supervisor_status === 'pending'" class="text-orange">

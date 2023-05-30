@@ -24,30 +24,7 @@ export default {
         },
       ],
     },
-    {
-      text: "",
-      key: "",
-      items: [
-        {
-        icon: "mdi-cog-outline",
-        key: "menu.settings",
-        text: "Settings",
-        link: "/Admin/Settings",
-      },
-    ],
-    },
-    {
-      text: "",
-      key: "",
-      items: [
-        {
-          key: "menu.supervisors",
-          text: "Supervisors",
-          link: "/Admin/Supervisors",
-          icon: "mdi-account-multiple-outline",
-        },
-      ],
-    },
+    
     {
       text: "",
       key: "",
@@ -66,12 +43,61 @@ export default {
       key: "",
       items: [
         {
+          key: "menu.supervisors",
+          text: "Supervisors",
+          link: "/Admin/Supervisors",
+          icon: "mdi-account-multiple-outline",
+        },
+      ],
+    },
+    // students
+    {
+      text: "",
+      key: "",
+      items: [
+        {
+          key: "menu.students",
+          text: "Students",
+          link: "/Admin/Students",
+          icon: "mdi-account-multiple-outline",
+        },
+      ],
+    },
+    {
+      text: "",
+      key: "",
+      items: [
+        {
+          key: "menu.companies",
+          text: "Companies",
+          link: "/Admin/Companies",
+          icon: "mdi-briefcase-outline",
+        },
+      ],
+    },
+    {
+      text: "",
+      key: "",
+      items: [
+        {
           key: "menu.users",
           text: "Users",
           link: "/Admin/Users",
           icon: "mdi-account-outline",
         },
       ],
+    },
+    {
+      text: "",
+      key: "",
+      items: [
+        {
+        icon: "mdi-cog-outline",
+        key: "menu.settings",
+        text: "Settings",
+        link: "/Admin/Settings",
+      },
+    ],
     },
     {
       text: "",

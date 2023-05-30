@@ -38,7 +38,7 @@ const user = {
         console.log(response.data);
         if (response.data.role) {
           router.push({ path: response.data.role });
-          commit("setUser", response.data);
+          // commit("setUser", response.data);
         }
       } catch (error) {
         console.log(error.response.data);

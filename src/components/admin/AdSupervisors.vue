@@ -9,6 +9,7 @@ export default {
       hoveredItem: null,
       hoveredCompany: null,
       backendUrl,
+      dataItemsWithDateOnly: [],
       headers : [
   { text: "Id", align: "start", value: "id" },
   {
@@ -21,7 +22,7 @@ export default {
   { text: "Status", value: "status" },
   { text: "", sortable: false, align: "right", value: "action" },
 ],
-items :null
+items :[]
     };}
     ,
     methods:{
@@ -78,10 +79,18 @@ items :null
     },
     
     },
-    mounted() {
-      this.getSupervisors()
+    created() {
+      this.getSupervisors();
     
     },
+    computed: {
+    itemsWithDateOnly() {
+      return this.items.map(item => {
+        const dateOnly = item.created_at.substring(0, 10);
+        return { ...item, dateOnly };
+      });
+    }
+  }
   }
 
 
@@ -115,7 +124,7 @@ items :null
         </thead>
 
         <tbody>
-          <tr v-for="item in items" :key="item.id"  >
+          <tr v-for="item in itemsWithDateOnly" :key="item.id"  >
             <td class="font-weight-bold">
               #{{item.id}}
             </td>
@@ -139,17 +148,17 @@ items :null
                 </div>
               </div>
             </td>
-            <td>{{ item.created_at }}</td>
+            <td>{{ item.dateOnly }}</td>
             <td @mouseover="showCompanyCard($event, item)"
            
             >{{ item.company_name }}</td>
             <td class="font-weight-bold">
-            <div v-if="item.status === 'rejected'" class="text-error">
-              <v-icon size="small" color="error">mdi-circle-medium</v-icon>
+            <div v-if="item.status === 'rejected'" class="text-red">
+              <v-icon size="small" color="red">mdi-circle-medium</v-icon>
               <span>Rejected</span>
             </div>
-            <div v-if="item.status === 'accepted'" class="text-success">
-              <v-icon size="small" color="success">mdi-circle-medium</v-icon>
+            <div v-if="item.status === 'accepted'" class="text-green">
+              <v-icon size="small" color="green">mdi-circle-medium</v-icon>
               <span>Accepted</span>
             </div>
             <div v-if="item.status === 'pending'" class="text-orange">
@@ -161,7 +170,7 @@ items :null
             <v-btn
               elevation="4"
               variant="outlined"
-              color="success"
+              color="green"
               size="small"
               @click="accept(item)"
             >
@@ -173,7 +182,7 @@ items :null
             <v-btn
               elevation="4"
               variant="outlined"
-              color="error"
+              color="red"
               size="small"
               @click="reject(item)"
             >

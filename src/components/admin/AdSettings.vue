@@ -35,7 +35,6 @@ methods:{
     try {
                 const response = await api.post('/updateProfilePicture', {
                     image: profilePic,
-                    
                 },{
                   headers: {
       "Content-Type":"multipart/form-data"
