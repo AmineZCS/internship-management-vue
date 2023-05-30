@@ -83,7 +83,7 @@ items :null
                 
           size="40" class="elevation-1 grey lighten-3">
                   <img :src="`${backendUrl}/companyPic/${item.id}`"
-                  style="object-fit: cover; object-position: center; width: 100%; height: 100%;"
+                  style="object-fit: contain; object-position: center; width: 100%; height: 100%;"
               />
                 </v-avatar>
                 <div class="ml-1">

@@ -168,7 +168,7 @@ items :null
               size="small"
               @click="deleteStudent(item)"
             >
-              <v-icon>mdi-close</v-icon>
+              <v-icon>mdi-trash-can</v-icon>
               <span class="ml-1">Delete</span>
           </v-btn>
           </td>

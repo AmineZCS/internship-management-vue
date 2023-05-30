@@ -59,7 +59,7 @@ export default {
           key: "menu.students",
           text: "Students",
           link: "/Admin/Students",
-          icon: "mdi-account-multiple-outline",
+          icon: "mdi-account",
         },
       ],
     },

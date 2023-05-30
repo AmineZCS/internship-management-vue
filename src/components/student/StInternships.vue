@@ -74,9 +74,9 @@ export default{
     <v-sheet max-width="1600" class="mx-auto pa-5" elevation="0">
       <v-container>
         <v-row align="center">
-          <v-col cols="12" md="6" v-for="item in internships" :key="item.id">
+          <v-col cols="12" md="4" v-for="item in internships" :key="item.id">
             <v-card max-width="400" class="mx-auto">
-              <v-img cover :src="`${backendUrl}/internshipPic/${item.id}`" height="200px"></v-img>
+              <v-img contain :src="`${backendUrl}/internshipPic/${item.id}`" height="200px"></v-img>
              
               <v-card-title class="text-h6 font-weight-bold">
                 {{ item.position }}   
@@ -153,6 +153,7 @@ export default{
               Apply</v-btn>
               </v-card-actions>
             </v-card>
+            
           </v-col>
         </v-row>
 <!--Profile  v-card to display on hover -->

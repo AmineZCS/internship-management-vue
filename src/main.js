@@ -17,6 +17,9 @@ const vuetifyTheme = {
   warning: '#FFC107'
 }
 
+// Import the MDI icon set CSS file
+import '@mdi/font/css/materialdesignicons.css'
+
 
 createApp(App)
   .use(router)
@@ -27,6 +30,10 @@ createApp(App)
         light: vuetifyTheme,
         dark: vuetifyTheme
       }
+    },
+    icons: {
+      // Use the MDI icon set
+      iconfont: 'mdi'
     }
   })
   .mount('#app')
