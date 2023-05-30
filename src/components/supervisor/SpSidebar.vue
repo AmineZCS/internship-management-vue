@@ -37,6 +37,19 @@ export default {
       ],
     
     },
+    // attendance
+    {
+      text: "",
+      key: "",
+      items: [
+        {
+          key: "menu.attendance",
+          text: "Attendance",
+          link: "/Supervisor/Attendance",
+          icon: "mdi-account-multiple-outline",
+        },
+      ],
+    },
     {
       text: "",
       key: "",
