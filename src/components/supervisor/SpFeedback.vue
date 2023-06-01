@@ -1,5 +1,10 @@
 <template>
     <v-container class="container">
+      <v-card>
+        <v-card-title>
+          <span class="text-h5">Feedback</span>
+        </v-card-title>
+        <v-card-text>
       <v-row>
         <v-col cols="12" md="6">
           <v-autocomplete
@@ -18,6 +23,9 @@
           <v-text-field v-model="newFeedback" label="Create new feedback" outlined></v-text-field>
         </v-col>
       </v-row>
+        </v-card-text>
+        <v-card-actions>
+          
       <v-row>
         <v-col>
             <v-btn
@@ -41,8 +49,17 @@
                 <span class="ml-1">Create Feedback</span>
             </v-btn>
         </v-col>
+        <v-btn
+            color="blue-darken-1"
+            variant="text"
+            @click="$emit('close')"
+          >
+            Close
+          </v-btn>
         
       </v-row>
+        </v-card-actions>
+      </v-card>
     </v-container>
   </template>
   
@@ -94,7 +111,7 @@
       },
       async rejectApplication() {
           //  Call an API endpoint to reject the application with the selected feedback ID and application ID
-          this.$emit('applicationRejected');
+          
         await api.post('/supervisorRejectApplication', {
             application_id: this.applicationId,
           feedback_id: this.selectedFeedback
@@ -104,6 +121,8 @@
             console.log('Application rejected successfully');
             this.fetchFeedbacks();
             // update the applications list
+            this.$emit('applicationRejected');
+          this.$emit('close');
           
           })
           .catch(error => {
@@ -112,6 +131,7 @@
           });
       },
       onCreateFeedback() {
+        this.dialog = false;
         if (this.newFeedback) {
           this.createFeedback(this.newFeedback);
         }

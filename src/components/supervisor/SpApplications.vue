@@ -9,6 +9,7 @@ export default {
         cardTop: 0,
       cardLeft: 0,
       },
+      dialog: false,
       cardTop: 0,
       cardLeft: 0,
       hoveredItem: null,
@@ -216,22 +217,31 @@ selectedApplicationId: null,
           </v-btn>
           </td>
           <td>
+            <v-dialog
+      v-model="dialog"
+      persistent
+      width="1024"
+    >
+      <template v-slot:activator="{ props }">
             <v-btn
               elevation="4"
               variant="outlined"
               color="red"
               size="small"
               @click="reject(item)"
+              v-bind="props"
             >
               <v-icon>mdi-close</v-icon>
               <span class="ml-1">Decline</span>
           </v-btn>
+        </template>
+
+      <SpFeedback :applicationId="selectedApplicationId" @close="dialog=false" @applicationRejected="getApplications()"/>
+    </v-dialog>
           </td>
           </tr>
         </tbody>
       </v-table>
-      <SpFeedback v-if="showFeedbackDialog" :applicationId="selectedApplicationId" @close="showFeedbackDialog=false" @applicationRejected="getApplications()"/>
-    
     </perfect-scrollbar>
      <!-- Student Profile  v-card to display on hover -->
      <v-card v-if="hoveredItem" class="profile-card elevation-10" :style="{ top: cardTop, left: cardLeft}" @mouseleave="hideCard"
