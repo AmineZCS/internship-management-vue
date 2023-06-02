@@ -1,13 +1,33 @@
 <template>
-    <v-container class="container">
+   
       <v-card>
         <v-card-title>
           <span class="text-h5">Feedback</span>
         </v-card-title>
         <v-card-text>
       <v-row>
+        
         <v-col cols="12" md="6">
+          <v-text-field v-model="newFeedback" label="Create new feedback" outlined></v-text-field>
+        </v-col>
+        <v-col>
+            <v-btn
+                elevation="4"
+                variant="outlined"
+                color="blue"
+                size="large"
+                @click="onCreateFeedback"
+            >
+                <v-icon>mdi-plus</v-icon>
+                <span class="ml-1">Create Feedback</span>
+            </v-btn>
+        </v-col>
+      </v-row>
+      <v-row>
+        
+      <v-col cols="12" md="6">
           <v-autocomplete
+          required
             v-model="selectedFeedback"
             :items="feedbacks"
             :item-title="item => item.message"
@@ -19,10 +39,7 @@
             clearable
           ></v-autocomplete>
         </v-col>
-        <v-col cols="12" md="6">
-          <v-text-field v-model="newFeedback" label="Create new feedback" outlined></v-text-field>
-        </v-col>
-      </v-row>
+        </v-row>
         </v-card-text>
         <v-card-actions>
           
@@ -38,29 +55,22 @@
               <span class="ml-1">Decline Application</span>
           </v-btn>
         </v-col>
+           
+        <v-spacer></v-spacer>
         <v-col>
-            <v-btn
-                elevation="4"
-                variant="outlined"
-                color="primary"
-                @click="onCreateFeedback"
-            >
-                <v-icon>mdi-plus</v-icon>
-                <span class="ml-1">Create Feedback</span>
-            </v-btn>
-        </v-col>
+            
         <v-btn
-            color="blue-darken-1"
+            color="green-darken-1"
             variant="text"
             @click="$emit('close')"
           >
-            Close
+            Cancel
           </v-btn>
+        </v-col>
         
       </v-row>
         </v-card-actions>
       </v-card>
-    </v-container>
   </template>
   
   <script>

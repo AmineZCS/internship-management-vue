@@ -53,6 +53,7 @@ selectedApplicationId: null,
       },
       reject(item){
         this.showFeedbackDialog = false
+        this.dialog = true
         this.selectedApplicationId = item.id
         console.log(this.selectedApplicationId)
         this.showFeedbackDialog = true
@@ -217,31 +218,31 @@ selectedApplicationId: null,
           </v-btn>
           </td>
           <td>
-            <v-dialog
-      v-model="dialog"
-      persistent
-      width="1024"
-    >
-      <template v-slot:activator="{ props }">
             <v-btn
               elevation="4"
               variant="outlined"
               color="red"
               size="small"
               @click="reject(item)"
-              v-bind="props"
             >
               <v-icon>mdi-close</v-icon>
               <span class="ml-1">Decline</span>
           </v-btn>
-        </template>
-
-      <SpFeedback :applicationId="selectedApplicationId" @close="dialog=false" @applicationRejected="getApplications()"/>
-    </v-dialog>
+            
           </td>
           </tr>
         </tbody>
       </v-table>
+      <v-dialog
+            :key="selectedApplicationId"
+      v-model="dialog"
+      persistent
+      width="1024"
+      close-on-back="true"
+    >
+
+      <SpFeedback :applicationId="selectedApplicationId" @close="dialog=false" @applicationRejected="getApplications()"/>
+    </v-dialog>
     </perfect-scrollbar>
      <!-- Student Profile  v-card to display on hover -->
      <v-card v-if="hoveredItem" class="profile-card elevation-10" :style="{ top: cardTop, left: cardLeft}" @mouseleave="hideCard"
