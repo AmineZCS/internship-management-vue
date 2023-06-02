@@ -155,6 +155,7 @@
 
     mounted() {
       this.fetchFeedbacks();
+      console.log(this.applicationId)
     }
   };
   </script>

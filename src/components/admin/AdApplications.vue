@@ -1,13 +1,18 @@
 <script  lang="ts">
 import backendUrl from "../../backendConfig.js";
 import api from "../../api"
+import AdFeedback from "./AdFeedback.vue";
 export default {
+  components: {
+    AdFeedback
+  },
   data() {
     return {
       internship:{
         cardTop: 0,
       cardLeft: 0,
       },
+      dialog: false,
       cardTop: 0,
       cardLeft: 0,
       hoveredItem: null,
@@ -30,6 +35,8 @@ export default {
   { text: "", sortable: false, align: "right", value: "action" },
 ],
 items:null,
+showFeedbackDialog: false,
+selectedApplicationId: null,
     };}
     ,
     methods:{
@@ -49,7 +56,11 @@ items:null,
 
       },
       reject(item){
-        console.log(item)
+        this.showFeedbackDialog = false
+        this.dialog = true
+        this.selectedApplicationId = item.application.id
+        console.log(this.selectedApplicationId)
+        this.showFeedbackDialog = true
       },
 
       async getApplications(){
@@ -273,6 +284,16 @@ items:null,
           </tr>
         </tbody>
       </v-table>
+      <v-dialog
+            :key="selectedApplicationId"
+      v-model="dialog"
+      persistent
+      width="1024"
+      close-on-back="true"
+    >
+
+      <AdFeedback :applicationId="selectedApplicationId" @close="dialog=false" @applicationRejected="getApplications()"/>
+    </v-dialog>
     </perfect-scrollbar>
      <!-- Student Profile  v-card to display on hover -->
      <v-card v-if="hoveredItem" class="profile-card elevation-10" :style="{ top: cardTop, left: cardLeft}" @mouseleave="hideCard"

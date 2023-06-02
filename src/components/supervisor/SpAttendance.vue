@@ -25,9 +25,6 @@ export default {
     value: "user",
   },
   { text: "Department", value: "department" },
-  
-  { text: "Status", value: "supervisor_status" },
-  { text: "Resume", value: "resume" },
   { text: "", sortable: false, align: "right", value: "action" },
 ],
 items:null,
@@ -37,6 +34,8 @@ selectedApplicationId: null,
     };}
     ,
     methods:{
+      markPresent(item){
+        console.log(item)},
       async accept(item){
         console.log(item.id)
         try {const response = await api.post('/supervisorAcceptApplication',{
@@ -57,8 +56,8 @@ selectedApplicationId: null,
         this.showFeedbackDialog = true
       },
 
-      async getApplications(){
-        const response = await api.get('/supervisorApplications')
+      async getAttendance(){
+        const response = await api.get('/attendance')
         console.log(response.data)
         this.items = response.data
         return response
@@ -105,7 +104,7 @@ selectedApplicationId: null,
     },
     },
     async mounted() {
-      this.getApplications()
+      this.getAttendance()
     
     },
     components:{
@@ -202,36 +201,23 @@ selectedApplicationId: null,
               <span class="ml-1">Resume</span>
           </v-btn>
           </td>
-
-            <td>
-            <v-btn
-              elevation="4"
-              variant="outlined"
-              color="success"
-              size="small"
-              @click="accept(item)"
-            >
-              <v-icon>mdi-check</v-icon>
-              <span class="ml-1">Accept</span>
-          </v-btn>
-          </td>
+          <!-- mark student as present -->
           <td>
             <v-btn
               elevation="4"
               variant="outlined"
-              color="red"
+              color="primary"
               size="small"
-              @click="reject(item)"
+              @click="markPresent(item.student)"
             >
-              <v-icon>mdi-close</v-icon>
-              <span class="ml-1">Decline</span>
+              <v-icon>mdi-check</v-icon>
+              <span class="ml-1">Present</span>
           </v-btn>
           </td>
+          
           </tr>
         </tbody>
       </v-table>
-      <SpFeedback v-if="showFeedbackDialog" :applicationId="selectedApplicationId" @close="showFeedbackDialog=false" @applicationRejected="getApplications()"/>
-    
     </perfect-scrollbar>
      <!-- Student Profile  v-card to display on hover -->
      <v-card v-if="hoveredItem" class="profile-card elevation-10" :style="{ top: cardTop, left: cardLeft}" @mouseleave="hideCard"
@@ -267,6 +253,7 @@ selectedApplicationId: null,
             <span class="ml-1">{{ hoveredItem.student.email }}</span>
           </div>
           <v-divider></v-divider>
+
           <div class="py-5 px-3">
             <v-icon color="grey"> mdi-phone-outline </v-icon>
             <span class="ml-1">{{ hoveredItem.student.phone_number }}</span>
