@@ -1,13 +1,16 @@
 <template>
     <v-app>
-        <navBar />
+     
+        <navBar style="z-index: 1 !important;" />
+        <v-content>
+
       <!-- Accueil -->
       <div class="bg">
-        <img src="../../../../forAmine/used/PNG/bg.jpg">
+        
       <div class="navBarReg" id="home"></div>
       <section class="sec2" style="margin-top: 20px; background: transparent;">
       <div class="firstFather mb-8 mt-5">
-        <v-layout row wrap class="firstPage">
+        <v-layout row wrap class="firstPage" style="z-index: 1 !important;">
           <v-flex lg6 md6 sm12 xs12 style="margin-top: 65px;">
             <h1>Welcome to</h1>
             <h1 class="biggerh1"><span>Internship</span>Axis</h1>
@@ -15,13 +18,13 @@
                 Simplifying the process for students, department heads, <br> and supervisors.
                 Efficient, user-friendly, and effective.</p>
 
-            <v-layout row wrap class="mt-8">
+            <v-layout row wrap class="mt-8" style="z-index: 1 !important;">
               <v-btn text rounded lg2 class="btn1 mr-6">Get started  <v-icon>mdi-arrow-right</v-icon></v-btn>
             </v-layout>
           </v-flex>
   
           <v-flex lg6 md6 sm12 xs12>
-            <v-img src="../../../../forAmine/used/PNG/Corporate Intern.png" contain max-height="500" class="mainImg"></v-img>
+            <img src="../assets/Corporate-Intern.png" style="width: 100%;"/>
           </v-flex>
         </v-layout>
       </div>
@@ -42,11 +45,14 @@
           <v-col cols="3" class="justify-end ml-6">
             <v-spacer></v-spacer>
             <v-spacer></v-spacer>
-              <v-img src="../../../../forAmine/used/PNG/IA.png" class="logoStage" height="200" width="500" style="margin-left: 90%; margin-top: 20px;"></v-img>
+              <img 
+              fill
+              src="../assets/IA.png"   style=" margin-top: 0px;">
           </v-col>
         </v-row>
       </v-container>
       </div>
+      
       <!-- Contact -->
   
       <div class="fourthFather mt-8" id="contact">
@@ -126,19 +132,21 @@
   </div>
       <!-- Footer -->
   
-      <v-footer dark padless>
-          <v-card-text class="white--text text-center">
+      <v-footer dark padless class="footerr">
+          <v-card-text class="white--text text-center" >
             {{ new Date().getFullYear() }} — <strong>InternshipAxis - &copy; all rights reserved</strong>
           </v-card-text>
       </v-footer>
+    </v-content>
+      <router-view style="z-index: 100;">
+      </router-view>
     </v-app>
   </template>
   
   <script>
-    import navBar from '../components/navBar.vue';
+    import navBar from './navBar.vue';
     export default {
   
-      name: 'welcome-page',
       components:{
         navBar,
       },
@@ -165,7 +173,11 @@
   </script>
   
   <style scoped>
-  .bg img{
+  /* font is outifit */
+  *{
+    font-family: 'Outfit', sans-serif;
+  }
+  .bg .bgg{
     width: 100%;
     height: 100vh;
     position: absolute;
@@ -261,7 +273,7 @@
     color: #63D693;
   }
   .sec2{
-    z-index: 1000;
+    
     position: relative;
     background-color: #fff;
   }
@@ -271,6 +283,22 @@
   }
   .fourthFather p{
   font-size: 20px;
+}
+.footerr{
+  color:white;
+  background-color: #161425;
+}
+.route-enter-active {
+  transition: opacity 1s;
+}
+
+.route-leave-active {
+  transition: opacity 1s;
+}
+
+.route-enter,
+.route-leave-to {
+  opacity: 0;
 }
   </style>
   

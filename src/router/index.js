@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import api from "../api";
-import HomeVue from "../views/HomeView.vue";
+import welcomePage from "../components/welcomePage2.vue"
 import LoginComp from "../components/LoginComp.vue";
 import StDashboard from "../components/student/StDashboard.vue";
 import SpDashboard from "../components/supervisor/SpDashboard.vue";
@@ -20,8 +20,8 @@ import NotFound from "../components/NotFound.vue";
 const routes = [
   {
     path: "/",
-    name: "HomeVue",
-    component: HomeVue,
+    name: "welcomePage",
+    component: welcomePage,
     children: [
       {
         path: "login",
@@ -30,10 +30,6 @@ const routes = [
         meta: {
           transitionName: "route",
         },
-      },
-      {
-        path: "contact-us",
-        name: "contact-us",
       },
     ],
   },

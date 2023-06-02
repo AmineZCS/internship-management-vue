@@ -9,7 +9,7 @@ const props = defineProps({
 });
 </script>
 <template>
-  <v-list class="menu-list" nav dense color="black">
+  <v-list  nav dense color="white">
     <template v-for="menuArea in props.menu" >
       <div
         
@@ -25,7 +25,6 @@ const props = defineProps({
             :to="menuItem.link"
             :prepend-icon="menuItem.icon || 'mdi-circle-medium'"
             active-class="active-nav-grey"
-            density="compact"
           >
             <v-list-item-title
               v-text="menuItem.text"
@@ -63,10 +62,8 @@ const props = defineProps({
 }
 
 .active-nav-grey {
-  border-left: 5px solid;
+  border-left: 5px solid #42404e;
   border-image-slice: 1;
-  border-image-source: linear-gradient(to bottom, #3374c9, #a4abbb);
-  background-color: #e1ebf3;
+  background-color: #f7ab3e;
 } 
-
 </style>

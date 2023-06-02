@@ -12,7 +12,7 @@
         }"
     >
     <div class="mainLogoContainer">
-            <v-img src="../../../../forAmine/used/PNG/IA.png" class="mainLogo"></v-img>
+            <img src="../assets/IA.png" class="mainLogo"/>
     </div>
     <v-spacer></v-spacer>
     <v-spacer></v-spacer>
@@ -83,13 +83,14 @@
     height: 50px;
 }
 .mainLogo{
-    width: 170px;
-    height: 40px;
-    margin-top: 5px;
+    width: 75px;
+    height: 60px;
+    padding: 5px;
 }
 .navOption{
     color: #120030;
-    border-radius: 50px;
+    border-radius: 50px !important;
+    
 }
 .navOption:hover{
     color: #3a3849;

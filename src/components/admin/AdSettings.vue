@@ -130,6 +130,7 @@ methods:{
               <v-col cols="12" sm="6">
                 <v-label class="font-weight-medium mb-2">Last Name</v-label>
                 <v-text-field
+                  
                   v-model="user.user_info.lname"
                   :readonly=editInfoMode
                   :class="editInfoMode ? 'bg-blue-grey-lighten-5 text-grey' : ''"

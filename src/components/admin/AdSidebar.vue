@@ -151,10 +151,10 @@ export default {
         class="d-flex align-center justify-center"
       >
         <img
-         
-          width="200"
-          src="../../assets/logo_light.svg"
+          width="100"
+          src="../../assets/IA.png"
           alt=""
+          
         />
       </v-card>
     </template>
