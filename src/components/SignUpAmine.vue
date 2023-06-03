@@ -2,7 +2,7 @@
     <div class="Holder">
       <v-row class="my-0">
         <v-col cols="12" md="5" class="d-flex left-col pb-0" style="position: relative;">
-            <img class="logo" src="../../../../forAmine/used/PNG/IAWhite.png" alt="">
+            <img class="logo" src="../assets/IAWhite.png" alt="">
             <p class="logoName">InternshipAxis.</p>
             <div class="left-text-holder">
                 <h1 class="left-header mb-5">Let's get started .</h1>
@@ -330,7 +330,7 @@ export default {
     margin-left: 60px;
   }
   .left-col{
-background-image: url(../../../../forAmine/used/PNG/left.png);
+background-image: url(../assets/left.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center; 
