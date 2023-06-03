@@ -50,6 +50,19 @@ export default {
         },
       ],
     },
+    // Evaluation
+    {
+      text: "",
+      key: "",
+      items: [
+        {
+          key: "menu.evaluation",
+          text: "Evaluation",
+          link: "/Supervisor/Evaluations",
+          icon: "mdi-notebook-check",
+        },
+      ],
+    },
     {
       text: "",
       key: "",
@@ -101,11 +114,12 @@ export default {
         height="100"
         class="d-flex align-center justify-center"
       >
-        <img
-         
-          width="200"
-          src="../../assets/logo_light.svg"
+      <img
+          width="80"
+          src="../../assets/IA.png"
           alt=""
+          @click="$router.push('/')"
+          
         />
       </v-card>
     </template>

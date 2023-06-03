@@ -78,6 +78,7 @@ selectedApplicationId: null,
           responseType: 'blob'
         })
         console.log(response)
+        console.log(response.headers)
         // create a blob url from the response
         const blob = new Blob([response.data], { type: 'application/pdf' })
         const url = window.URL.createObjectURL(blob)
@@ -230,23 +231,25 @@ selectedApplicationId: null,
           </td>
           <!-- Supervisor Status -->
           <td class="font-weight-bold">
-            <div v-if="item.application.supervisor_status === 'rejected'" class="text-error">
-              <v-icon size="small" color="error">mdi-circle-medium</v-icon>
-              <span>Rejected</span>
+            <div v-if="item.application.supervisor_status === 'rejected'" class="text-red">
+              <v-icon size="small" color="red">mdi-close-circle</v-icon>
+              <span> Rejected</span>
             </div>
-            <div v-if="item.application.supervisor_status === 'approved'" class="text-success">
-              <v-icon size="small" color="success">mdi-circle-medium</v-icon>
-              <span>Accepted</span>
+            <div v-if="item.application.supervisor_status === 'approved'" class="text-green">
+              <v-icon size="small" color="green">mdi-check-decagram</v-icon>
+              
+              <span> Accepted</span>
             </div>
             <div v-if="item.application.supervisor_status === 'pending'" class="text-orange">
-              <v-icon size="small" color="orange">mdi-circle-medium</v-icon>
-              <span>Pending</span>
+              <v-icon size="small" color="orange">mdi-clock-time-five</v-icon>
+              <span> Pending</span>
             </div>
           </td>
           <!-- button to get student resume -->
           <td>
             <v-btn
               elevation="4"
+              :disabled="!item.student.cv_path"
               variant="outlined"
               color="primary"
               size="small"

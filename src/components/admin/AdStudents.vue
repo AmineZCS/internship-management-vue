@@ -151,12 +151,13 @@ items :null
             <td>
             <v-btn
               elevation="4"
+              :disabled="!item.cv_path"
               variant="outlined"
               color="#5E35B1"
               size="small"
               @click="getResume(item)"
             >
-              <v-icon>mdi-file-document</v-icon>
+            <v-icon>mdi-file-document</v-icon>
               <span class="ml-1">Resume</span>
           </v-btn>
           </td>

@@ -15,7 +15,7 @@ confirmPassword:'',
 confirmPasswordShow:false,
 editable:false,
 image:null,
-resume:null,
+cv:null,
 imageErrMsg:null,
 errMsg:null,
     };
@@ -48,10 +48,19 @@ methods:{
             }
 },
  // },
-  // uploadResume(event){
-  //   this.resume = event.target.files[0];
-  //   console.log(this.resume)
-  // }
+ async uploadCV(){
+  try {
+                const response = await api.post('/uploadCV', {
+                    cv: this.cv[0],
+                },{
+                  headers: {
+      "Content-Type":"multipart/form-data"
+    },
+                })
+              } catch (error) {
+                console.log(error.response.data);
+            }
+  }
  
     },
   
@@ -203,6 +212,21 @@ methods:{
                     accept="image/*"
                     @change="uploadImage"
                     v-model="image"
+                    :class="editInfoMode ? 'bg-blue-grey-lighten-5 hidden ' : ''"
+              color="blue"
+              variant="outlined"
+              
+                  ></v-file-input>
+                    
+                </v-col>
+                <v-col cols="12" sm="6">
+                <v-label class="font-weight-medium mb-2">Update Your Resume</v-label>
+                  
+                    <v-file-input
+                    ref="cvinput"
+                    accept="application/pdf"
+                    @change="uploadCV"
+                    v-model="cv"
                     :class="editInfoMode ? 'bg-blue-grey-lighten-5 hidden ' : ''"
               color="blue"
               variant="outlined"

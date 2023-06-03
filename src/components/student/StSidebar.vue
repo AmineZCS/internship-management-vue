@@ -73,11 +73,14 @@ export default {
         height="100"
         class="d-flex align-center justify-center"
       >
-        <img
-         
-          width="200"
-          src="../../assets/logo_light.svg"
+      <!-- the image will redirect to  the / page -->
+        
+      <img
+          width="80"
+          src="../../assets/IA.png"
           alt=""
+          @click="$router.push('/')"
+          
         />
       </v-card>
     </template>

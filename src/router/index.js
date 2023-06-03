@@ -14,6 +14,7 @@ import AdApplications from "../components/admin/AdApplications.vue";
 import SpApplications from "../components/supervisor/SpApplications.vue";
 import SpFeedback from "../components/supervisor/SpFeedback.vue";
 import SpAttendance from "../components/supervisor/SpAttendance.vue";
+import SpEvaluations from "../components/supervisor/SpEvaluations.vue";
 import AdStudents from "../components/admin/AdStudents.vue";
 import AdCompanies from "../components/admin/AdCompanies.vue";
 import NotFound from "../components/NotFound.vue";
@@ -73,7 +74,13 @@ const routes = [
         path: "Attendance",
         name: "SpAttendance",
         component: SpAttendance
+      },
+      {
+        path: "Evaluations",
+        name: "SpEvaluations",
+        component: SpEvaluations
       }
+      
     ]
   },
   {
