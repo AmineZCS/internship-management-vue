@@ -17,6 +17,11 @@ import SpAttendance from "../components/supervisor/SpAttendance.vue";
 import SpEvaluations from "../components/supervisor/SpEvaluations.vue";
 import AdStudents from "../components/admin/AdStudents.vue";
 import AdCompanies from "../components/admin/AdCompanies.vue";
+import SupervisorSignup from "../components/SignUpAmine.vue";
+import StAppliedInternships from "../components/student/StAppliedInternships.vue";
+import StEvaluation from "../components/student/StEvaluation.vue";
+import checkCertificate from "../components/checkCertificate.vue";
+import StAttendance from "../components/student/StAttendance.vue";
 import NotFound from "../components/NotFound.vue";
 const routes = [
   {
@@ -31,8 +36,21 @@ const routes = [
         meta: {
           transitionName: "route",
         },
-      },
+      }
+      
     ],
+
+  },
+  // route to check the certificate token (passed in the params)
+  {
+    path: "/certificate/:token",
+    name: "checkCertificate",
+    component: checkCertificate,
+  },
+  {
+    path: "/SupervisorSignup",
+    name: "SupervisorSignup",
+    component:SupervisorSignup,
   },
   {
     path: "/Student",
@@ -51,6 +69,22 @@ const routes = [
         name: "StInternships",
         component: StInternships,
       },
+      {
+        path: "AppliedInternships",
+        name: "StAppliedInternships",
+        component: StAppliedInternships,
+      },
+      {
+        path: "Evaluation",
+        name: "StEvaluation",
+        component: StEvaluation,
+      },
+      {
+        path: "Attendance",
+        name: "StAttendance",
+        component: StAttendance,
+      },
+
     ],
   },
   {

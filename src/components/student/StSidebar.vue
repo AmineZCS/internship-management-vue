@@ -24,6 +24,45 @@ export default {
         },
       ],
     },
+    // applied internships
+    {
+      text: "",
+      key: "",
+      items: [
+        {
+          key: "menu.appliedInternships",
+          text: "Applied Internships",
+          link: "/Student/AppliedInternships",
+          icon: "mdi-briefcase-search-outline",
+        },
+      ],
+    },
+    // evaluations
+    {
+      text: "",
+      key: "",
+      items: [
+        {
+          key: "menu.evaluation",
+          text: "Evaluation",
+          link: "/Student/Evaluation",
+          icon: "mdi-file-document-edit-outline",
+        },
+      ],
+    },
+    // attendance
+    {
+      text: "",
+      key: "",
+      items: [
+        {
+          key: "menu.attendance",
+          text: "Attendance",
+          link: "/Student/Attendance",
+          icon: "mdi-calendar-check-outline",
+        },
+      ],
+    },
     {
       text: "",
       key: "",

@@ -41,24 +41,10 @@ items :null
           params: {
             id: student.id
           },
-          responseType: 'json'
+          responseType: 'blob'
         })
-        // check if the response status is 404 and show a popup message with the error
-        if (response.status == 404) {
-            console.log('Student hasn\'t uploaded a resume yet')
-  this.$bvToast.toast('Student hasn\'t uploaded a resume yet', {
-    title: 'Error',
-    variant: 'danger',
-    solid: true,
-    autoHideDelay: 5000,
-    appendToast: true
-  });
-  return;
-}
-        
-
-        
-
+        console.log(response)
+        console.log(response.headers)
         // create a blob url from the response
         const blob = new Blob([response.data], { type: 'application/pdf' })
         const url = window.URL.createObjectURL(blob)

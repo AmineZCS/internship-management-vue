@@ -1,6 +1,7 @@
 <script lang="ts">
  import backendUrl from "../../backendConfig"
  import api from "../../api"
+ import StNewInternship from "./StNewInternship.vue"
 export default{
  
   data() {
@@ -8,11 +9,15 @@ export default{
         cardTop: 0,
       cardLeft: 0,
         backendUrl,
+        newDialog: false,
         internships:null,
         hoveredItem:null,
         hoveredCompany:null
       }
   },
+  components:{
+    StNewInternship
+  },  
   methods:{
     showCard(event, item) {
   this.hoveredItem = item;
@@ -51,6 +56,7 @@ export default{
           internship_id: id
         })
         console.log(response.data)
+        this.getInternships()
       } catch (error) {
         console.log(error.response)
       }
@@ -67,7 +73,27 @@ export default{
   <v-toolbar height="60">
     <v-toolbar-title class="text-h6 font-weight-bold">
       <span>Internships</span>
+      
     </v-toolbar-title>
+    <v-btn
+        elevation="4"
+        variant="outlined"
+        color="primary"
+        size="large"
+        @click="newDialog = true"
+      >
+        <v-icon>mdi-plus</v-icon>
+        <span class="ml-1">New Internship</span>
+      </v-btn>
+      <v-dialog
+           
+      v-model="newDialog"
+      persistent
+      width="1024"
+      close-on-back="true"
+    >
+      <StNewInternship @close="newDialog=false" @internshipCreated="getInternships()"/>
+    </v-dialog>
   </v-toolbar>
 
   <v-sheet elevation="0" class="mx-auto landing-warpper" rounded>
