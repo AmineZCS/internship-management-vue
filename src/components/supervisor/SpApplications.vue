@@ -210,6 +210,7 @@ selectedApplicationId: null,
             <td>
             <v-btn
               elevation="4"
+              :disabled="item.supervisor_status == 'approved'"
               variant="outlined"
               color="success"
               size="small"
@@ -222,6 +223,7 @@ selectedApplicationId: null,
           <td>
             <v-btn
               elevation="4"
+              :disabled="item.supervisor_status == 'rejected'"
               variant="outlined"
               color="red"
               size="small"
@@ -240,7 +242,7 @@ selectedApplicationId: null,
       v-model="dialog"
       persistent
       width="1024"
-      close-on-back="true"
+      close-on-back
     >
 
       <SpFeedback :applicationId="selectedApplicationId" @close="dialog=false" @applicationRejected="getApplications()"/>

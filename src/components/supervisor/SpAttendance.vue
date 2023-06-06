@@ -5,6 +5,9 @@ import SpNewAttendance from "./SpNewAttendance.vue";
 export default {
   data() {
     return {
+      selectedStudent: null,
+      students: [],
+      date: null,
       internship:{
         cardTop: 0,
       cardLeft: 0,
@@ -44,9 +47,21 @@ selectedEvaluation: null,
       deleteEvaluation(item){
         
       },
-
+      async getStudents() {
+        try{
+            const response = await api.get('/supervisorStudents')
+            console.log(response.data);
+            this.students = response.data;
+        }catch(error ) {
+          console.log(error);
+        };
+      },
       async getAttendance(){
-        const response = await api.get('/attendance')
+        const response = await api.get('/attendance',{
+          params: {
+            date: this.date,
+          student_id: this.selectedStudent
+          }})
         console.log(response.data)
         this.items = response.data
         return response
@@ -94,6 +109,7 @@ selectedEvaluation: null,
     },
     async mounted() {
       this.getAttendance()
+      this.getStudents()
     
     },
     components:{
@@ -136,16 +152,38 @@ selectedEvaluation: null,
         <span class="ml-1">New Attendance</span>
       </v-btn>
     </h6>
-    <v-col cols="12" md="3" style="padding: 0; margin-left: 20px">
+    <v-spacer>  </v-spacer>
+    <v-row style="margin-top: 20px;">
+    <v-col cols="12" md="2" style="padding: 0; margin-left: 20px">
         <v-label class="font-weight-medium mb-2">Date</v-label>
               <v-text-field
               hide-details
+              @change="getAttendance()"
+                v-model="date"
                color="orange"
                 variant="outlined"
                 density="compact"
                 type="date"
 />
             </v-col>
+            <v-col cols="12" md="2"></v-col>
+            <v-col cols="12" md="3" style="padding: 0; margin-left: 20px">
+        <v-label class="font-weight-medium mb-2" style="padding: 0;">Student</v-label>
+          <v-autocomplete
+         
+          style="padding: 0;"
+            v-model="selectedStudent"
+            :items="students"
+            hide-details
+            :item-title="item => item.fname + ' ' + item.lname"
+            :item-text="item => item.fname + ' ' + item.lname"
+            :item-value="item => item.id"
+            outlined
+            clearable
+            @blur="getAttendance()"
+          ></v-autocomplete>
+        </v-col>
+      </v-row>
     <perfect-scrollbar style="height: 400px">
       <v-table class="pa-3">
         <thead>
@@ -194,8 +232,9 @@ selectedEvaluation: null,
     v-model="item.is_present"
     hide-details
     color="orange"
-    true-value="1"
-    false-value="0"
+    
+    :true-value="1"
+    :false-value="0"
   ></v-switch>
           </td>
           <!-- Date -->
@@ -234,13 +273,10 @@ selectedEvaluation: null,
           </tr>
         </tbody>
       </v-table>
-     
     <v-dialog
-           
       v-model="newDialog"
-      persistent
       width="600"
-      close-on-back="true"
+      close-on-back
     >
       <SpNewAttendance @close="newDialog=false" @attendanceCreated="getAttendance()"/>
     </v-dialog>

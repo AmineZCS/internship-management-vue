@@ -52,11 +52,12 @@ selectedEvaluation: null,
         this.items = response.data
         return response
       },
-      async getResume(student){
-        // send a get request to /downloadCV with the id of the student to download the pdf cv (ps: the response is a downloadable file)
-        const response = await api.get('/downloadCV/',{
+      async getCertificate(student,supervisorID){
+        // send a post  request to /downloadCV with the id of the student to download the pdf cv (ps: the response is a downloadable file)
+        const response = await api.get('/generatePDF/',{
           params: {
-            id: student.id
+            student_id: student.id,
+            supervisor_id: supervisorID
           },
           responseType: 'blob'
         })
@@ -67,7 +68,7 @@ selectedEvaluation: null,
         // create a link element to download the file
         const link = document.createElement('a')
         link.href = url
-        link.setAttribute('download', `${student.fname}_${student.lname}_${student.id}_CV.pdf`)
+        link.setAttribute('download', `${student.fname}_${student.lname}_${student.id}_Certificate.pdf`)
         // append the link to the body
         document.body.appendChild(link)
         // dispatch a click event on the link to start the download
@@ -183,7 +184,7 @@ selectedEvaluation: null,
               variant="outlined"
               color="primary"
               size="small"
-              @click="getResume(item.student)"
+              @click="getCertificate(item.student,item.supervisor_id)"
             >
               <v-icon>mdi-file-document</v-icon>
               <span class="ml-1">Certificate</span>
@@ -235,7 +236,7 @@ selectedEvaluation: null,
       v-model="dialog"
       persistent
       width="1024"
-      close-on-back="true"
+      close-on-back
     >
 
       <SpEditEvaluation :evaluation="selectedEvaluation" @close="dialog=false" @evaluationEdited="getEvaluations()"/>
@@ -245,7 +246,7 @@ selectedEvaluation: null,
       v-model="newDialog"
       persistent
       width="1024"
-      close-on-back="true"
+      close-on-back
     >
       <SpNewEvaluation @close="newDialog=false" @evaluationCreated="getEvaluations()"/>
     </v-dialog>
