@@ -2,12 +2,12 @@
    
     <v-card>
       <v-card-title>
-        <span class="text-h5">Evaluation</span>
+        <span class="text-h5">New Attendance</span>
       </v-card-title>
       <v-card-text>
-        <v-row>
+        <v-row justify="center" align="center">
 
-      <v-col cols="12" md="6">
+      <v-col cols="12" md="12">
         <v-label class="font-weight-medium mb-2">Students</v-label>
          
           <v-autocomplete
@@ -24,7 +24,7 @@
           ></v-autocomplete>
         </v-col>
         </v-row>
-    <v-row>
+    <v-row justify="center" align="center">
       <!-- Label and text input for 5 evaluations and a global appraciation -->
       <v-col cols="12" md="6">
         <v-label class="font-weight-medium mb-2">Date</v-label>
@@ -32,7 +32,7 @@
               v-model="date"
                 :readonly=editInfoMode
                 :class="editInfoMode ? 'bg-blue-grey-lighten-5 text-grey' : ''"
-                color="blue"
+                color="orange"
                 variant="outlined"
                 density="compact"
                 type="date"
@@ -41,11 +41,12 @@
 
 
             <v-col cols="12" md="6">
-        <v-label class="font-weight-medium mb-2">Is Present</v-label>
+        <v-label class="font-weight-medium mb-2">Present</v-label>
               <!-- switch with boolean value -->
               <v-switch
     v-model="is_present"
     hide-details
+    color="orange"
     true-value="1"
     false-value="0"
   ></v-switch>

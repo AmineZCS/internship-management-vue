@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Set the base URL for your API
-axios.defaults.baseURL = "http://192.168.12.251:8000/api";
+axios.defaults.baseURL = "http://192.168.99.114:8000/api";
 
 // Get the token from local storage
 const token = localStorage.getItem("token");

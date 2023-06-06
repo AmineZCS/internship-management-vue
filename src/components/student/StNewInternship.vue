@@ -250,7 +250,7 @@
             class="mb-4"
             contain
             height="128"
-            src="../assets/IA.png"
+            src="../../assets/IA.png"
           />
           <h3 class="text-h6 font-weight-light mb-2">
             Internship Created Successfully

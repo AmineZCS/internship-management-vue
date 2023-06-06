@@ -2,7 +2,7 @@
    
       <v-card>
         <v-card-title>
-          <span class="text-h5">Evaluation</span>
+          <span class="text-h5">Edit Evaluation</span>
         </v-card-title>
         <v-card-text>
       <v-row>
@@ -123,11 +123,11 @@
             <v-btn
               elevation="4"
               variant="outlined"
-              color="red"
+              color="orange"
               :disabled="!isFormValid"
               @click="editEvaluation"
             >
-              <v-icon>mdi-close</v-icon>
+              <v-icon>mdi-pen</v-icon>
               <span class="ml-1">Edit Evaluation</span>
           </v-btn>
         </v-col>

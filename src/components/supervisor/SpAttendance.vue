@@ -23,8 +23,8 @@ export default {
     value: "user",
   },
   { text: "Department", value: "department" },
-  { text: "Resume", value: "resume" },
-  { text: "Total Mark", value: "total_mark" },
+  { text: "Present", value: "is_present" },
+  { text: "Date", value: "date" },
   
 ],
 items:null,
@@ -46,7 +46,7 @@ selectedEvaluation: null,
       },
 
       async getAttendance(){
-        const response = await api.get('/evaluations')
+        const response = await api.get('/attendance')
         console.log(response.data)
         this.items = response.data
         return response
@@ -120,7 +120,10 @@ selectedEvaluation: null,
   </div> -->
   <div>
     <h6 class="text-h6 px-5 pt-5 d-flex align-center font-weight-bold">
-      <span class="flex-fill font-weight-bold">Evaluations</span>
+      <span class="flex-fill font-weight-bold">Attendance</span>
+      
+        
+           
       <!-- button to create a new evalutaion -->
       <v-btn
         elevation="4"
@@ -133,6 +136,16 @@ selectedEvaluation: null,
         <span class="ml-1">New Attendance</span>
       </v-btn>
     </h6>
+    <v-col cols="12" md="3" style="padding: 0; margin-left: 20px">
+        <v-label class="font-weight-medium mb-2">Date</v-label>
+              <v-text-field
+              hide-details
+               color="orange"
+                variant="outlined"
+                density="compact"
+                type="date"
+/>
+            </v-col>
     <perfect-scrollbar style="height: 400px">
       <v-table class="pa-3">
         <thead>
@@ -174,30 +187,23 @@ selectedEvaluation: null,
                 {{item.student.department.abbreviation}}
               </div>
             </td>
-            <!-- button to get student resume -->
+            <!-- Present -->
           <td>
-            <v-btn
-              elevation="4"
-              variant="outlined"
-              color="primary"
-              size="small"
-              @click="getResume(item.student)"
-            >
-              <v-icon>mdi-file-document</v-icon>
-              <span class="ml-1">Resume</span>
-          </v-btn>
+            
+              <v-switch
+    v-model="item.is_present"
+    hide-details
+    color="orange"
+    true-value="1"
+    false-value="0"
+  ></v-switch>
           </td>
-          <!-- Total Mark -->
-          <td class="font-weight-bold">
-            <div v-if="item.total_mark < 10" class="text-red">
-              <v-icon size="small" color="red">mdi-close-circle</v-icon>
-              <span>{{`   ${item.total_mark}/20`}}</span>
-            </div>
-            <div v-if="item.total_mark >= 10" class="text-green">
-              <v-icon size="small" color="green">mdi-check-decagram</v-icon>
-              <span>{{`   ${item.total_mark}/20`}}</span>
-            </div>
-          </td>
+          <!-- Date -->
+          <td>
+              <div class="text-bold">
+                {{item.date}}
+              </div>
+            </td>
           
 
             <td>
@@ -233,7 +239,7 @@ selectedEvaluation: null,
            
       v-model="newDialog"
       persistent
-      width="1024"
+      width="600"
       close-on-back="true"
     >
       <SpNewAttendance @close="newDialog=false" @attendanceCreated="getAttendance()"/>

@@ -6,6 +6,7 @@
 <script lang="ts">
 import { mapGetters, mapActions } from "vuex";
 import { useRouter } from "vue-router";
+import backendUrl from "../backendConfig.js";
 const router = useRouter();
 export default {
 
@@ -22,6 +23,7 @@ export default {
   
   data () {
     return {
+      backendUrl,
       navs : [
   {
     title: "Profile Details",
@@ -78,7 +80,7 @@ export default {
         <v-badge content="2" color="success" dot bordered>
           <v-avatar size="40">
             <img
-                :src="`http://localhost:8000/profilePic/${user.user_info.id}`"
+                :src="`${backendUrl}/profilePic/${user.user_info.id}`"
                 style="object-fit: cover; object-position: center; width: 100%; height: 100%;"
               />
           </v-avatar>

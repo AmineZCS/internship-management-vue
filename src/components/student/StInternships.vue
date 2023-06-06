@@ -86,9 +86,12 @@ export default{
         <span class="ml-1">New Internship</span>
       </v-btn>
       <v-dialog
-           
+      justify="center"
+      
+      absolute
+
       v-model="newDialog"
-      persistent
+      
       width="1024"
       close-on-back="true"
     >
@@ -96,7 +99,7 @@ export default{
     </v-dialog>
   </v-toolbar>
 
-  <v-sheet elevation="0" class="mx-auto landing-warpper" rounded>
+  <v-sheet elevation="0" class="mx-auto landing-warpper" rounded style="width: 100%">
     <v-sheet max-width="1600" class="mx-auto pa-5" elevation="0">
       <v-container>
         <v-row align="center">

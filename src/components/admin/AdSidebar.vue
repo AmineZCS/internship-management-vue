@@ -80,36 +80,12 @@ export default {
       key: "",
       items: [
         {
-          key: "menu.users",
-          text: "Users",
-          link: "/Admin/Users",
-          icon: "mdi-account-outline",
-        },
-      ],
-    },
-    {
-      text: "",
-      key: "",
-      items: [
-        {
         icon: "mdi-cog-outline",
         key: "menu.settings",
         text: "Settings",
         link: "/Admin/Settings",
       },
     ],
-    },
-    {
-      text: "",
-      key: "",
-      items: [
-        {
-          key: "menu.notifications",
-          text: "Notifications",
-          link: "/Admin/Notifications",
-          icon: "mdi-bell-outline",
-        },
-      ],
     }
   ]
       

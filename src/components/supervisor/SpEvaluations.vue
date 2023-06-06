@@ -24,7 +24,7 @@ export default {
     value: "user",
   },
   { text: "Department", value: "department" },
-  { text: "Resume", value: "resume" },
+  { text: "Certificate", value: "certificate" },
   { text: "Total Mark", value: "total_mark" },
   
 ],
@@ -178,6 +178,7 @@ selectedEvaluation: null,
             <!-- button to get student resume -->
           <td>
             <v-btn
+              :disabled="item.total_mark < 10"
               elevation="4"
               variant="outlined"
               color="primary"
@@ -185,7 +186,7 @@ selectedEvaluation: null,
               @click="getResume(item.student)"
             >
               <v-icon>mdi-file-document</v-icon>
-              <span class="ml-1">Resume</span>
+              <span class="ml-1">Certificate</span>
           </v-btn>
           </td>
           <!-- Total Mark -->

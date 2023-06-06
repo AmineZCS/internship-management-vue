@@ -174,7 +174,7 @@ selectedApplicationId: null,
   </div> -->
   <div @mouseenter="isMouseOverInternshipCard=false">
     <h6 class="text-h6 px-5 pt-5 d-flex align-center font-weight-bold">
-      <span class="flex-fill font-weight-bold">Table</span>
+      <span class="flex-fill font-weight-bold">Applications</span>
     </h6>
     <perfect-scrollbar style="height: 400px">
       <v-table class="pa-3">
@@ -216,17 +216,17 @@ selectedApplicationId: null,
             >{{ item.internship.position }}</td>
             <!-- Admin status -->
             <td class="font-weight-bold">
-            <div v-if="item.application.admin_status === 'rejected'" class="text-error">
-              <v-icon size="small" color="error">mdi-circle-medium</v-icon>
-              <span>Rejected</span>
+            <div v-if="item.application.admin_status === 'rejected'" class="text-red">
+              <v-icon size="small" color="red">mdi-close-circle</v-icon>
+              <span>  Rejected</span>
             </div>
-            <div v-if="item.application.admin_status === 'approved'" class="text-success">
-              <v-icon size="small" color="success">mdi-circle-medium</v-icon>
-              <span>Accepted</span>
+            <div v-if="item.application.admin_status === 'approved'" class="text-green">
+              <v-icon size="small" color="green">mdi-check-decagram</v-icon>
+              <span>  Accepted</span>
             </div>
             <div v-if="item.application.admin_status === 'pending'" class="text-orange">
-              <v-icon size="small" color="orange">mdi-circle-medium</v-icon>
-              <span>Pending</span>
+              <v-icon size="small" color="orange">mdi-clock-time-five</v-icon>
+              <span>  Pending</span>
             </div>
           </td>
           <!-- Supervisor Status -->
