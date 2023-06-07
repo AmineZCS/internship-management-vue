@@ -1,9 +1,10 @@
 <script  lang="ts">
 import backendUrl from "../../backendConfig.js";
+import StFeedbacks from "./StFeedbacks.vue";
 import api from "../../api"
 export default {
   components: {
-    
+    StFeedbacks
   },
   data() {
     return {
@@ -36,6 +37,7 @@ export default {
 items:null,
 showFeedbackDialog: false,
 selectedApplicationId: null,
+selectedApplication: null,
     };}
     ,
     methods:{
@@ -55,11 +57,9 @@ selectedApplicationId: null,
 
       },
       deleteApplication(item){
-        this.showFeedbackDialog = false
-        this.dialog = true
-        this.selectedApplicationId = item.application.id
+        
+        this.selectedApplicationId = item.id
         console.log(this.selectedApplicationId)
-        this.showFeedbackDialog = true
       },
 
       async getApplications(){
@@ -68,7 +68,7 @@ selectedApplicationId: null,
         this.items = response.data
         return response
       },
-      async getResume(student){
+      async getFeedbacks(student){
         // send a get request to /downloadCV with the id of the student to download the pdf cv (ps: the response is a downloadable file)
         const response = await api.get('/downloadCV/',{
           params: {
@@ -248,11 +248,11 @@ selectedApplicationId: null,
           <td>
             <v-btn
               elevation="4"
-                :disabled="item.feedback_application.length === 0 || !item.feedback_application"
+                :disabled="item.feedbacks.length === 0 || !item.feedbacks"
               variant="outlined"
               color="primary"
               size="small"
-              @click="getResume(item.student_id)"
+              @click="dialog = true; selectedApplication = item"
             >
               <v-icon>mdi-file-document</v-icon>
               <span class="ml-1">Feedbacks</span>
@@ -276,11 +276,10 @@ selectedApplicationId: null,
       <v-dialog
             :key="selectedApplicationId"
       v-model="dialog"
-      persistent
-      width="1024"
-      close-on-back="true"
+      width="600"
+      close-on-back
     >
-    dialog hh
+    <StFeedbacks :feedbacks="selectedApplication.feedbacks" />
      </v-dialog>
     </perfect-scrollbar>
      <!-- Student Profile  v-card to display on hover -->
@@ -330,7 +329,6 @@ selectedApplicationId: null,
       
      <v-card  v-if="hoveredInternship" max-width="400" class="profile-card elevation-10 mx-auto" :style="{ top: internship.cardTop, left: internship.cardLeft}" @mouseover="isMouseOverInternshipCard = true" @mouseleave.stop="isMouseOverInternshipCard = false" @mouseleave="hideInternshipCard" >
               <v-img cover :src="`${backendUrl}/internshipPic/${hoveredInternship.internship.id}`" height="200px"></v-img>
-             
               <v-card-title class="text-h6 font-weight-bold">
                 {{ hoveredInternship.internship.position }}   
               </v-card-title>

@@ -22,6 +22,7 @@ import StAppliedInternships from "../components/student/StAppliedInternships.vue
 import StEvaluation from "../components/student/StEvaluation.vue";
 import checkCertificate from "../components/checkCertificate.vue";
 import StAttendance from "../components/student/StAttendance.vue";
+import StudentSignup from "../components/StudentSignup.vue"
 import NotFound from "../components/NotFound.vue";
 const routes = [
   {
@@ -52,6 +53,12 @@ const routes = [
     name: "SupervisorSignup",
     component:SupervisorSignup,
   },
+  {
+    path: "/StudentSignup",
+    name: "StudentSignup",
+    component:StudentSignup,
+  },
+  
   {
     path: "/Student",
     name: "StDashboard",

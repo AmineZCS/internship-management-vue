@@ -105,7 +105,7 @@ export default{
         <v-row align="center">
           <v-col cols="12" md="4" v-for="item in internships" :key="item.id">
             <v-card max-width="400" class="mx-auto">
-              <v-img contain :src="`${backendUrl}/internshipPic/${item.id}`" height="200px"></v-img>
+              <v-img cover :src="`${backendUrl}/internshipPic/${item.id}`" height="200px"></v-img>
              
               <v-card-title class="text-h6 font-weight-bold">
                 {{ item.position }}   
@@ -161,7 +161,7 @@ export default{
                   <!-- <v-icon class="mr-2">mdi-account</v-icon> -->
                   <v-avatar size="30" class="mx-auto" color="white">
                 <img
-                :src="`${backendUrl}/companyPic/1`"
+                :src="`${backendUrl}/companyPic/${item.company_id}`"
                 style="object-fit: contain; object-position: center; width: 100%; height: 100%;"
               />
               </v-avatar>

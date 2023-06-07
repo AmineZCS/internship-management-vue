@@ -27,6 +27,21 @@ editInfoMode(){
   },
 },
 methods:{
+  async updateBasicInfo(){
+        try {
+            const response = await api.post('/user', {
+                fname: this.user.user_info.fname,
+                lname: this.user.user_info.lname,
+                email: this.user.user_info.email,
+                location: this.user.user_info.location,
+                phone_number: this.user.user_info.phone_number,
+                bio: this.user.user_info.bio})
+                this.editable = false
+                console.log(response.data)
+        } catch (error) {
+          console.log(error.response.data);
+        }
+  },
   async uploadImage(){
     this.imageErrMsg = '';
     const profilePic = this.image[0]
@@ -221,6 +236,7 @@ methods:{
               elevation="1"
               variant="outlined"
               :disabled="editInfoMode"
+              @click="updateBasicInfo"
             >
               Unpdate Basic Info</v-btn
             >

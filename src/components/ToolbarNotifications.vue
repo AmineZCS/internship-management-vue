@@ -3,49 +3,22 @@
 * @Maintainer: J.K. Yang
 * @Description: 
 -->
-<script setup lang="ts">
-const messages = [
-  {
-    
-    color: "primary",
-    icon: "mdi-account-circle",
-    message:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint, repudiandae?",
-    time: "3 min",
+<script lang="ts">
+import { mapGetters, mapActions } from 'vuex'
+export default {
+ 
+computed: {
+    ...mapGetters('notifications', ['notifications','countUnreadNotifications']),
   },
-  {
-    title: "Summer BBQ",
-    color: "success",
-    icon: "mdi-email-outline",
-    message:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint, repudiandae?",
-    time: "3 min",
+  methods: {
+    ...mapActions('notifications', ['getNotifications','readNotifications']),
   },
-  {
-    title: "Oui oui",
-    color: "teal lighten-1",
-    icon: "mdi-airplane-landing",
-    message:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint, repudiandae?",
-    time: "4 min",
+
+  mounted() {
+    // call the getNotifications action from the notifications module
+    this.getNotifications()
   },
-  {
-    title: "Disk capacity is at maximum",
-    color: "teal accent-3",
-    icon: "mdi-server",
-    message:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint, repudiandae?",
-    time: "3 hr",
-  },
-  {
-    title: "Recipe to try",
-    color: "blue-grey lighten-2",
-    icon: "mdi-noodles",
-    message:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint, repudiandae?",
-    time: "8 hr",
-  },
-];
+}
 </script>
 
 <template>
@@ -54,15 +27,18 @@ const messages = [
     <!-- Activator Btn -->
     <!-- ---------------------------------------------- -->
     <template v-slot:activator="{ props }">
-      <v-btn icon v-bind="props" class="text-none">
-        <v-badge content="2" color="red">
-          <v-icon>mdi-bell-outline</v-icon>
-        </v-badge>
+      <v-btn icon v-bind="props" class="text-none" @click="readNotifications">
+        <v-badge v-if="countUnreadNotifications > 0" :content="countUnreadNotifications" color="red">
+                    <v-icon>mdi-bell-outline</v-icon>
+                </v-badge>
+                <v-badge dot v-if="countUnreadNotifications == 0">
+                    <v-icon>mdi-bell-outline</v-icon>
+                </v-badge>
       </v-btn>
     </template>
     <v-list elevation="1" lines="three" density="compact" max-width="400">
       <v-list-subheader>Notifications</v-list-subheader>
-      <v-list-item v-for="(message, i) in messages" :key="i" @click="">
+      <v-list-item v-for="(message, i) in notifications" :key="i" @click="">
         <!-- ---------------------------------------------- -->
         <!-- Prepend-->
         <!-- ---------------------------------------------- -->
@@ -75,16 +51,16 @@ const messages = [
         <!-- ---------------------------------------------- -->
         <!-- Append-->
         <!-- ---------------------------------------------- -->
-        <template v-slot:append>
+        <!-- <template v-slot:append>
           <div class="full-h d-flex align-center">
             <span class="text-body-2 text-grey"> {{ message.time }}</span>
           </div>
-        </template>
+        </template> -->
         <!-- ---------------------------------------------- -->
         <!-- Main Content-->
         <!-- ---------------------------------------------- -->
         <div>
-          <v-list-item-title class="font-weight-bold text-blue">{{
+          <v-list-item-title class="font-weight-bold text-orange">{{
             message.title
           }}</v-list-item-title>
           <v-list-item-subtitle>{{ message.message }}</v-list-item-subtitle>
@@ -93,9 +69,7 @@ const messages = [
       <!-- ---------------------------------------------- -->
       <!-- See all Btn-->
       <!-- ---------------------------------------------- -->
-      <div class="text-center py-5">
-        <v-btn size="small" variant="elevated" elevation="1"> See all </v-btn>
-      </div>
+      
     </v-list>
   </v-menu>
 </template>

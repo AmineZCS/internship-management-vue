@@ -290,9 +290,8 @@ selectedApplicationId: null,
       <v-dialog
             :key="selectedApplicationId"
       v-model="dialog"
-      persistent
       width="1024"
-      close-on-back="true"
+      close-on-back
     >
 
       <AdFeedback :applicationId="selectedApplicationId" @close="dialog=false" @applicationRejected="getApplications()"/>
@@ -400,7 +399,7 @@ selectedApplicationId: null,
                   <!-- <v-icon class="mr-2">mdi-account</v-icon> -->
                   <v-avatar size="30" class="mx-auto" color="white">
                 <img
-                :src="`${backendUrl}/companyPic/1`"
+                :src="`${backendUrl}/companyPic/${hoveredInternship.company.id}`"
                 style="object-fit: contain; object-position: center; width: 100%; height: 100%;"
               />
               </v-avatar>

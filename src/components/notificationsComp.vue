@@ -1,8 +1,8 @@
 <template>
     <v-menu transition="slide-y-transition" @click="getNotifications">
         <template v-slot:activator="{ props }">
-            <v-btn v-bind="props" class="text-none" stacked @click="readNotifications">
-                <v-badge v-if="countUnreadNotifications > 0" :content="countUnreadNotifications" color="error">
+            <v-btn icon v-bind="props" class="text-none" stacked @click="readNotifications">
+                <v-badge v-if="countUnreadNotifications > 0" :content="countUnreadNotifications" color="red">
                     <v-icon>mdi-bell-outline</v-icon>
                 </v-badge>
                 <v-badge dot v-if="countUnreadNotifications == 0">
