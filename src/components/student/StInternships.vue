@@ -93,7 +93,7 @@ export default{
       v-model="newDialog"
       
       width="1024"
-      close-on-back="true"
+      close-on-back
     >
       <StNewInternship @close="newDialog=false" @internshipCreated="getInternships()"/>
     </v-dialog>

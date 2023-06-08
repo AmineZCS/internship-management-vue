@@ -28,32 +28,14 @@ export default {
   {
     title: "Profile Details",
     key: "menu.profileDetails",
-    link: "/profile",
+    link: "Settings",
     icon: "mdi-account-box-outline",
   },
   {
-    title: "Plans and Billing",
-    key: "menu.plansAndBilling",
-    link: "/plans-and-billing",
-    icon: "mdi-credit-card-outline",
-  },
-  {
-    title: "Team",
-    key: "menu.team",
-    link: "/team",
-    icon: "mdi-account-group-outline",
-  },
-  {
-    title: "API Dashboard",
-    key: "menu.apiDashboard",
-    link: "/api-dashboard",
-    icon: "mdi-monitor-dashboard",
-  },
-  {
-    title: "Integrations",
-    key: "menu.integrations",
-    link: "/integrations",
-    icon: "mdi-puzzle-outline",
+    title: "Applications",
+    key: "menu.applications",
+    link: "Applications",
+    icon: "mdi-file-document-outline",
   },
   {
     title: "Ask the Community",
@@ -92,11 +74,11 @@ export default {
         <!-- ---------------------------------------------- -->
         <!-- Profile Area -->
         <!-- ---------------------------------------------- -->
-        <v-list-item to="/profile">
+        <v-list-item to="Settings">
           <template v-slot:prepend>
             <v-avatar size="40">
               <img
-                :src="`http://localhost:8000/profilePic/${user.user_info.id}`"
+                :src="`${backendUrl}/profilePic/${user.user_info.id}`"
                 style="object-fit: cover; object-position: center; width: 100%; height: 100%;"
               />
             </v-avatar>
@@ -118,7 +100,7 @@ export default {
 
       <v-list variant="flat" elevation="0" :lines="false" density="compact">
         <v-list-item
-          color="primary"
+          color="orange"
           v-for="(nav, i) in navs"
           :key="i"
           :to="nav.link"
@@ -157,7 +139,7 @@ export default {
           </div>
         </v-list-item>
         <v-list-item
-          color="primary"
+          color="orange"
           link
           @click=""
           density="compact"

@@ -5,6 +5,8 @@ export default {
   data() {
     return {
       backendUrl,
+      internships: [],
+        internship_id: null,
       headers : [
   { text: "Date", value: "date" },
     { text: "Present", value: "present" },
@@ -19,15 +21,28 @@ items :null
 
       
       async getAttendances(){
-        const response = await api.get('/studentAttendance')
+        const response = await api.get('/studentAttendance',{
+          params:{
+            internship_id:this.internship_id
+          }
+        })
         console.log(response.data)
         this.items = response.data
         return response
       },
+      async getInternships() {
+        try{
+            const response = await api.get('/acceptedApplications')
+            console.log(response.data);
+            this.internships = response.data;
+        }catch(error ) {
+          console.log(error);
+        };
+  },
         
       },
       mounted() {
-      this.getAttendances()
+      this.getInternships()
     
     },
     }   
@@ -50,8 +65,26 @@ items :null
   </div> -->
   <div >
     <h6 class="text-h6 px-5 pt-5 d-flex align-center font-weight-bold">
-      <span class="flex-fill font-weight-bold">Table</span>
+      <span class="flex-fill font-weight-bold">Attendance</span>
     </h6>
+    <v-row style="margin: 20px 0">
+        <v-col cols="12" md="3" style="padding: 0; margin-left: 20px">
+        <v-label class="font-weight-medium mb-2" style="padding: 0;">Select an Internship</v-label>
+          <v-autocomplete
+         
+          style="padding: 0;"
+            v-model="internship_id"
+            :items="internships"
+            hide-details
+            :item-title="item => item.internship.position"
+            :item-text="item => item.internship.position"
+            :item-value="item => item.internship.id"
+            outlined
+            clearable
+            @blur="getAttendances"
+          ></v-autocomplete>
+        </v-col>
+        </v-row>
     <perfect-scrollbar style="height: 400px">
       <v-table class="pa-3">
         <thead>

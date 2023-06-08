@@ -35,7 +35,6 @@ export default {
           icon: "mdi-file-document-outline",
         },
       ],
-    
     },
     // attendance
     {
@@ -45,7 +44,7 @@ export default {
         {
           key: "menu.attendance",
           text: "Attendance",
-          link: "/Supervisor/Attendance",
+          link: "/Supervisor/Attendances",
           icon: "mdi-account-multiple-outline",
         },
       ],

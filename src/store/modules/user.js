@@ -22,8 +22,12 @@ const user = {
       try {
         const response = await api.post("/logout");
         console.log(response.data);
+        // remove the token from localStorage
         localStorage.removeItem("token");
+        // remove the user object from the store
         commit("setUser", null);
+        // delete everything from the local storage
+        localStorage.clear();
         // redirect to login page
         router.push("/login")
       } catch (error) {

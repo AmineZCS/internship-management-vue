@@ -21,7 +21,10 @@
             <v-layout row wrap class="mt-8" style="z-index: 1 !important;">
               <v-btn text rounded lg2 class="btn1 mr-6" 
               to="/SupervisorSignup"
-              >Get started  <v-icon>mdi-arrow-right</v-icon></v-btn>
+              >Supervisor Signup<v-icon>mdi-arrow-right</v-icon></v-btn>
+              <v-btn text rounded lg2 class="btn1 mr-6" 
+              to="/StudentSignup"
+              >Intern Signup<v-icon>mdi-arrow-right</v-icon></v-btn>
             </v-layout>
           </v-flex>
   

@@ -56,11 +56,19 @@ selectedApplication: null,
 
 
       },
-      deleteApplication(item){
-        
-        this.selectedApplicationId = item.id
-        console.log(this.selectedApplicationId)
+      async deleteApplication(item){
+        console.log(item)
+        try{
+          const response = await api.post('/deleteApplication',{
+            application_id: item.id
+          })
+          console.log(response)
+          this.getApplications()
+        }catch(e){
+          console.log(e)
+        }
       },
+     
 
       async getApplications(){
         const response = await api.get('/applications')

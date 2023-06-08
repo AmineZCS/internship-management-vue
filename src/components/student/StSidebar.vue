@@ -32,7 +32,7 @@ export default {
         {
           key: "menu.appliedInternships",
           text: "Applied Internships",
-          link: "/Student/AppliedInternships",
+          link: "/Student/Applications",
           icon: "mdi-briefcase-search-outline",
         },
       ],

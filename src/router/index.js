@@ -77,7 +77,7 @@ const routes = [
         component: StInternships,
       },
       {
-        path: "AppliedInternships",
+        path: "Applications",
         name: "StAppliedInternships",
         component: StAppliedInternships,
       },
@@ -100,6 +100,7 @@ const routes = [
     component: SpDashboard,
     // meta: { requiresAuth: true },
     beforeEnter: (to, from, next) => checkRole(to, from, next, "supervisor"),
+    redirect: "/Supervisor/Applications",
     children: [
       {
         path: "Settings",
@@ -112,7 +113,7 @@ const routes = [
         component: SpApplications,
       },
       {
-        path: "Attendance",
+        path: "Attendances",
         name: "SpAttendance",
         component: SpAttendance
       },
@@ -130,6 +131,7 @@ const routes = [
     component: AdDashboard,
     // meta: { requiresAuth: true },
     beforeEnter: (to, from, next) => checkRole(to, from, next, "admin"),
+    redirect: "/Admin/Applications",
     children: [
       {
         path: "Settings",
